@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Agency</summary>
 	[PublishedModel("agency")]
-	public partial class Agency : PublishedContentModel, IContactPersonControl
+	public partial class Agency : PublishedContentModel, IAD
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -80,6 +80,13 @@ namespace Umbraco.Web.PublishedModels
 		public string AgencyName => this.Value<string>("agencyName");
 
 		///<summary>
+		/// Agency Status: 機構狀態
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("agencyStatus")]
+		public string AgencyStatus => this.Value<string>("agencyStatus");
+
+		///<summary>
 		/// Agency Type: 經營型態
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
@@ -94,59 +101,45 @@ namespace Umbraco.Web.PublishedModels
 		public bool IsHQ => this.Value<bool>("isHQ");
 
 		///<summary>
-		/// Contact Department: 聯絡人部門
+		/// Address Type: 地址類別
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactDepartment")]
-		public string ContactDepartment => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactDepartment(this);
+		[ImplementPropertyType("addressType")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent AddressType => global::Umbraco.Web.PublishedModels.AD.GetAddressType(this);
 
 		///<summary>
-		/// Contact eMail: 聯絡人電子郵件
+		/// AreaCode: 縣市代碼
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactEMail")]
-		public string ContactEmail => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactEmail(this);
+		[ImplementPropertyType("areaCode")]
+		public string AreaCode => global::Umbraco.Web.PublishedModels.AD.GetAreaCode(this);
 
 		///<summary>
-		/// Contact ID: 聯絡人身份證號
+		/// Area Name: 縣市名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactID")]
-		public string ContactID => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactID(this);
+		[ImplementPropertyType("areaName")]
+		public string AreaName => global::Umbraco.Web.PublishedModels.AD.GetAreaName(this);
 
 		///<summary>
-		/// Contact Mobile: 聯絡人手機
+		/// Stress Address: 地址-街道名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactMobile")]
-		public string ContactMobile => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactMobile(this);
+		[ImplementPropertyType("stressAddress")]
+		public string StressAddress => global::Umbraco.Web.PublishedModels.AD.GetStressAddress(this);
 
 		///<summary>
-		/// Contact Name: 聯絡人姓名
+		/// Zip Code: 鄉鎮市區Zip碼
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactName")]
-		public string ContactName => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactName(this);
+		[ImplementPropertyType("zipCode")]
+		public string ZipCode => global::Umbraco.Web.PublishedModels.AD.GetZipCode(this);
 
 		///<summary>
-		/// Contact TEL - Office: 聯絡人電話
+		/// Zip Name: 鄉鎮市區名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactTELOffice")]
-		public string ContactTeloffice => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactTeloffice(this);
-
-		///<summary>
-		/// Contact TEL-Office-Extension: 聯絡人電話分機
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactTELOfficeExtension")]
-		public string ContactTelofficeExtension => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactTelofficeExtension(this);
-
-		///<summary>
-		/// Contact Title: 聯絡人職稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("contactTitle")]
-		public string ContactTitle => global::Umbraco.Web.PublishedModels.ContactPersonControl.GetContactTitle(this);
+		[ImplementPropertyType("zipName")]
+		public string ZipName => global::Umbraco.Web.PublishedModels.AD.GetZipName(this);
 	}
 }

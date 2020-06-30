@@ -19,9 +19,38 @@ using Umbraco.ModelsBuilder.Embedded;
 
 namespace Umbraco.Web.PublishedModels
 {
-	/// <summary>AD</summary>
+	// Mixin Content Type with alias "aD"
+	/// <summary>XAD</summary>
+	public partial interface IAD : IPublishedElement
+	{
+		/// <summary>Address Type</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent AddressType { get; }
+
+		/// <summary>AreaCode</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string AreaCode { get; }
+
+		/// <summary>Area Name</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string AreaName { get; }
+
+		/// <summary>Stress Address</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string StressAddress { get; }
+
+		/// <summary>Zip Code</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string ZipCode { get; }
+
+		/// <summary>Zip Name</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string ZipName { get; }
+	}
+
+	/// <summary>XAD</summary>
 	[PublishedModel("aD")]
-	public partial class AD : PublishedElementModel
+	public partial class AD : PublishedElementModel, IAD
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -45,38 +74,69 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
+		/// Address Type: 地址類別
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("addressType")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent AddressType => GetAddressType(this);
+
+		/// <summary>Static getter for Address Type</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetAddressType(IAD that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("addressType");
+
+		///<summary>
 		/// AreaCode: 縣市代碼
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("areaCode")]
-		public string AreaCode => this.Value<string>("areaCode");
+		public string AreaCode => GetAreaCode(this);
+
+		/// <summary>Static getter for AreaCode</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetAreaCode(IAD that) => that.Value<string>("areaCode");
 
 		///<summary>
 		/// Area Name: 縣市名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("areaName")]
-		public string AreaName => this.Value<string>("areaName");
+		public string AreaName => GetAreaName(this);
+
+		/// <summary>Static getter for Area Name</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetAreaName(IAD that) => that.Value<string>("areaName");
 
 		///<summary>
 		/// Stress Address: 地址-街道名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("stressAddress")]
-		public string StressAddress => this.Value<string>("stressAddress");
+		public string StressAddress => GetStressAddress(this);
+
+		/// <summary>Static getter for Stress Address</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetStressAddress(IAD that) => that.Value<string>("stressAddress");
 
 		///<summary>
 		/// Zip Code: 鄉鎮市區Zip碼
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("zipCode")]
-		public string ZipCode => this.Value<string>("zipCode");
+		public string ZipCode => GetZipCode(this);
+
+		/// <summary>Static getter for Zip Code</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetZipCode(IAD that) => that.Value<string>("zipCode");
 
 		///<summary>
 		/// Zip Name: 鄉鎮市區名稱
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("zipName")]
-		public string ZipName => this.Value<string>("zipName");
+		public string ZipName => GetZipName(this);
+
+		/// <summary>Static getter for Zip Name</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetZipName(IAD that) => that.Value<string>("zipName");
 	}
 }

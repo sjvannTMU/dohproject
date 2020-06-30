@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DOHProject.Controllers
+namespace DOHProject.Controllers.WebAPI
 {
     public class CodeTableController : Umbraco.Web.WebApi.UmbracoApiController
     {

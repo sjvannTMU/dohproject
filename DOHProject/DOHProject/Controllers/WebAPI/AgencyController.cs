@@ -1,92 +1,109 @@
-﻿using DOHProject.Models.Agency;
-using Superpower.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using DOHProject.Controllers.WebAPI;
+using DOHProject.Models.Agency;
+using DOHProject.Repository.Agency;
+using System.Runtime.InteropServices;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Results;
-using System.Web.Services.Description;
-using System.Web.UI.WebControls.WebParts;
-using Umbraco.Core;
-using Umbraco.Web;
-using Umbraco.Web.PublishedModels;
+using Umbraco.Web.WebApi;
+using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Controllers
 {
-    [RoutePrefix("api/agency")]
-    public class AgencyController : Umbraco.Web.WebApi.UmbracoApiController
+    [RoutePrefix("api/agencies")]
+    public class AgencyController : UmbracoApiController, IRESTfulOperation<AgencyViewModel>
     {
+
+        private AgencyRepository _ar;
+        private AgencyGroupRepository _agr;
+        public AgencyController()
+        {
+            _ar = new AgencyRepository(Services.ContentService, Umbraco);
+            _agr = new AgencyGroupRepository(Services.ContentService, Umbraco);
+        }
+        #region Agency部份
         [HttpGet]
         [Route("")]
-        public IHttpActionResult GetAgencies()
+        public IHttpActionResult GetAll()
         {
-            var agencies = Umbraco.ContentAtRoot().DescendantsOrSelf<Agency>();
+            return Json(_ar.GetAll());
+        }
 
-            var models = agencies.Select(a => new AgencyApiModel { 
-                AgencyId = a.AgencyID,
-                AgencyName = a.AgencyName,
-                AgencyAlias = a.AgencyAlias,
-                ContactName = a.ContactName,
-                ContactDepartment = a.ContactDepartment,
-                ContactTitle = a.ContactTitle,
-                ContactTelOffice = a.ContactTeloffice,
-                ContactTelOfficeExt = a.ContactTelofficeExtension,
-                ContactMobile = a.ContactTeloffice,
-                ContactEmail = a.ContactEmail,
-                IsHQ = a.IsHQ,
-                AreaCode = a.Parent.Name,
-                AccreditationName = a.AccreditationType.ToString(),
-            });
-            return Json(models);
+        [HttpGet]
+        [Route("{pid}/agencies")]
+        public IHttpActionResult GetAll(int pid)
+        {
+            return Json(_ar.GetAll(pid));
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public IHttpActionResult Get(int id)
+        {
+            var node = _ar.GetById(id);
+            return (node == null) ? NotFound() : (IHttpActionResult)Json(node);
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id)
+        {
+            var node = _ar.GetNode(id);
+            if (node == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _ar.Delete(node);
+                return Ok();
+            }
+        }
+        [HttpPut]
+        [Route("{id}")]
+        public IHttpActionResult Put(int id, [FromBody] AgencyViewModel model)
+        {
+            var node = _ar.GetById(id);
+            return node != null ? Ok(_ar.Update(model)) : (IHttpActionResult)NotFound();
         }
         [HttpPost]
         [Route("")]
-        public HttpResponseMessage PostAgency(AgencyApiModel model)
+        public IHttpActionResult Post(AgencyViewModel model)
         {
-            var parent = Services.ContentService.GetRootContent().FirstOrDefault(x => x.ContentType.Alias == AgencyRoot.ModelTypeAlias);
-           
-            if(model.AgencyId.IsNullOrWhiteSpace() || model.AgencyName.IsNullOrWhiteSpace() )   //必填欄位查核
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);  //回應錯誤
-            }
-            else
-            {   
-                if(Umbraco.Content(parent.Id).Descendants<Agency>().First(x=>x.AgencyID == model.AgencyId) != null)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.Conflict);
-                }
-               
-                if(model.AreaCode != null)  //有群組，所以父節點改變
-                {
-                    int childCount = Services.ContentService.CountChildren(parent.Id);
-                    parent = Services.ContentService.GetPagedChildren(parent.Id, 1, childCount, out long childNodeLength).FirstOrDefault(x => x.Name == model.AreaCode);
-                }
-
-                //寫入資料
-                var content = Services.ContentService.Create(model.AgencyId, parent.Id, Agency.ModelTypeAlias);
-                content.SetValue(Agency.GetModelPropertyType(f => f.AgencyID).Alias, model.AgencyId);
-                content.SetValue(Agency.GetModelPropertyType(f => f.AgencyName).Alias, model.AgencyName);
-                content.SetValue(Agency.GetModelPropertyType(f => f.AgencyAlias).Alias, model.AgencyAlias);
-                content.SetValue(Agency.GetModelPropertyType(f => f.IsHQ).Alias, model.IsHQ);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactID).Alias, model.ContactId);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactName).Alias, model.ContactName);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactTitle).Alias, model.ContactTitle);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactDepartment).Alias, model.ContactDepartment);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactTeloffice).Alias, model.ContactTelOffice);
-                content.SetValue(Agency.GetModelPropertyType(f => f.ContactTelofficeExtension).Alias, model.ContactTelOfficeExt);
-
-                content.SetValue(Agency.GetModelPropertyType(f => f.AgencyID).Alias, model.AgencyId);
-
-
-
-                return new HttpResponseMessage(HttpStatusCode.OK);
-
-            }
-        
+            var node = _ar.Create(model);
+            return Ok(node);
         }
+        [HttpPost]
+        [Route("{pid}")]
+        public IHttpActionResult Post(int pid, AgencyViewModel model)
+        {
+            var node = _ar.Create(pid, model);
+            return Ok(node);
+        }
+
+        #endregion
+        #region AgencyGroup
+
+        [HttpGet]
+        [Route("Groups")]
+        public IHttpActionResult GetAllGroup()
+        {
+            var root = _agr.GetRootNode(PM.AgencyRoot.ModelTypeAlias);
+            return Json(_agr.GetAll(root.Id));
+        }
+
+        [HttpGet]
+        [Route("Groups/{id}")]
+        public IHttpActionResult GetGroup(int id)
+        {
+            return Json(_agr.GetById(id));
+        }
+
+        [HttpPost]
+        [Route("Groups")]
+        public IHttpActionResult PostGroup(AgencyGroupViewModel model)
+        {
+            var root = _agr.GetRootNode(PM.AgencyRoot.ModelTypeAlias);
+            var node = _agr.Create(root.Id, model);
+            return Ok(node);
+        }
+        #endregion
 
     }
 }

@@ -10,7 +10,7 @@ namespace DOHProject.Models.DataType
         /// <summary>
         /// 電話-住家
         /// </summary>
-        public string TELHome { get; set; }
+        //public string TELHome { get; set; }
         /// <summary>
         /// 電話-辦公室
         /// </summary>
@@ -28,5 +28,13 @@ namespace DOHProject.Models.DataType
         /// 
         /// </summary>
         public string EMail { get; set; }
+        /// <summary>
+        /// 電話國碼
+        /// </summary>
+        public string PhoneCountryCode { get; set; }
+        /// <summary>
+        /// 電話區域碼
+        /// </summary>
+        public string PhoneAreaCode { get; set; }
     }
 }

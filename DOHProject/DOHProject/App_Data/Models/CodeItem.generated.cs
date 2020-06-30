@@ -52,6 +52,13 @@ namespace Umbraco.Web.PublishedModels
 		public string CodeValue => this.Value<string>("codeValue");
 
 		///<summary>
+		/// Comment: 註解說明
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("comment")]
+		public string Comment => this.Value<string>("comment");
+
+		///<summary>
 		/// Description: 編碼系統之描述Display Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]

@@ -287,7 +287,7 @@ Umbraco.ModelsBuilder.Embedded.BackOffice.ContentTypeModelValidator, Umbraco.Mod
 CSUSK.Core.SurfaceControllers.ContactController, CSUSK.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 CSUSK.Core.PackageActions.CreateMediaHandler, CSUSK.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 DOHProject.Controllers.AgencyController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-DOHProject.Controllers.CodeTableController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DOHProject.Controllers.WebAPI.CodeTableController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 DOHProject.App_Start.SwggerComposer, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 DOHProject.App_Start.WebApiComposer, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 uSync8.Core.uSyncCoreComposer, uSync8.Core, Version=8.6.2.0, Culture=neutral, PublicKeyToken=null
@@ -463,7 +463,7 @@ Umbraco.Web.Editors.SectionController, Umbraco.Web, Version=8.0.0.0, Culture=neu
 Umbraco.Web.Editors.MediaController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Embedded.BackOffice.ModelsBuilderDashboardController, Umbraco.ModelsBuilder.Embedded, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 DOHProject.Controllers.AgencyController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-DOHProject.Controllers.CodeTableController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DOHProject.Controllers.WebAPI.CodeTableController, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 uSync8.BackOffice.Controllers.uSyncDashboardApiController, uSync8.BackOffice, Version=8.6.2.0, Culture=neutral, PublicKeyToken=null
 uSync8.BackOffice.Controllers.Trees.uSyncTreeController, uSync8.BackOffice, Version=8.6.2.0, Culture=neutral, PublicKeyToken=null
 
@@ -647,7 +647,22 @@ uSync8.ContentEdition.Handlers.MediaHandler, uSync8.ContentEdition, Version=8.6.
 Umbraco.Core.Models.PublishedContent.PublishedElementModel
 
 Umbraco.Web.PublishedModels.AD, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Address, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.AddressExt, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Attachment, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.CarouselSlide, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.CodeableConcept, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Coding, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.ContactPoint, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.ContactPointExt, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.HumanName, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Identifier, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Identify, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Occupation, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Period, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Person, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.XPN, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.XTN, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Umbraco.Core.Models.PublishedContent.PublishedContentModel
 
@@ -663,7 +678,7 @@ Umbraco.Web.PublishedModels.CodeSystem, DOHProject, Version=1.0.0.0, Culture=neu
 Umbraco.Web.PublishedModels.CodeTable, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.CodeTableRoot, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Contact, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PublishedModels.ContactPersonControl, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Contacts, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Content, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.ContentControls, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.File, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -678,6 +693,7 @@ Umbraco.Web.PublishedModels.Name, DOHProject, Version=1.0.0.0, Culture=neutral, 
 Umbraco.Web.PublishedModels.NavigationControls, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.PrettyLink, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.PrettyLinkControls, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Principal, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Search, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.UmbracoUrlAliasControls, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.UsingStatus, DOHProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
