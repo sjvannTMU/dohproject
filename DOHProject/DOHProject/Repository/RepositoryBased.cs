@@ -12,8 +12,11 @@ namespace DOHProject.Repository
 {
     public partial class RepositoryBased<T> : RepositoryContent, IRepositoryOperation<T> where T : class
     {
-        protected const string UPDATE_NULL_ERROR_MESSAGE = "更新時ViewModel不可為Null";
-public RepositoryBased(IContentService contentService) : base(contentService)
+        protected const string MESSAGE_ERROR_UPDATENULL = "更新時ViewModel不可為Null";
+        protected const string MESSAGE_ERROR_ADDNEW = "無法新增。資料已存在";
+        protected const string NAME_NODE_CONSTACTS = "聯絡人";
+        protected const string NAME_NODE_PRINCIPAL = "負責人";
+        public RepositoryBased(IContentService contentService) : base(contentService)
         {
         }
 

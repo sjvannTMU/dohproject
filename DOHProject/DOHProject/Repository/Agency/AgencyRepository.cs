@@ -14,8 +14,7 @@ namespace DOHProject.Repository.Agency
     public class AgencyRepository : RepositoryBased<AgencyViewModel>
     {
         private UmbracoHelper _helper;
-        private const string CONSTACTS_NODE_NAME = "聯絡人";
-        private const string PRINCIPAL_NODE_NAME = "負責人";
+        
         public AgencyRepository(IContentService service, UmbracoHelper helper):base(service)
         {
             this._helper = helper;
@@ -23,13 +22,16 @@ namespace DOHProject.Repository.Agency
         public override AgencyViewModel Create(AgencyViewModel model)
         {
             IContent p = (model.PId != 0) ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
+            var childNode = GetChildNodes(p.Id, PM.Agency.ModelTypeAlias).Where(x => x.GetValue<string>(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias) == model.Agency.AgencyId);
+            if (childNode != null || childNode.Any()) throw new Exception(MESSAGE_ERROR_ADDNEW);
+            
             IContent content = CreateNewNode(p.Id, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);
             SaveAndPublish(content);
-            IContent contacts = CreateNewNode(content.Id, PM.Contacts.ModelTypeAlias, CONSTACTS_NODE_NAME);
+            IContent contacts = CreateNewNode(content.Id, PM.Contacts.ModelTypeAlias, NAME_NODE_CONSTACTS);
             model.Set(ref contacts);
             SaveAndPublish(contacts);
-            IContent principal = CreateNewNode(content.Id, PM.Principal.ModelTypeAlias, PRINCIPAL_NODE_NAME);
+            IContent principal = CreateNewNode(content.Id, PM.Principal.ModelTypeAlias, NAME_NODE_PRINCIPAL);
             model.Set(ref principal);
             SaveAndPublish(principal);
 
@@ -57,7 +59,7 @@ namespace DOHProject.Repository.Agency
         }
         public override AgencyViewModel Update(AgencyViewModel model)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model), UPDATE_NULL_ERROR_MESSAGE);
+            if (model == null) throw new ArgumentNullException(nameof(model),MESSAGE_ERROR_UPDATENULL);
             var content = model.Id != 0 ? GetNode(model.Id) : null;
             if(content == null)
             {
@@ -67,10 +69,10 @@ namespace DOHProject.Repository.Agency
             {
                 model.Set(ref content);
                 SaveAndPublish(content);
-                IContent contacts = GetChildNode(content.Id, PM.Contacts.ModelTypeAlias, CONSTACTS_NODE_NAME);
+                IContent contacts = GetChildNode(content.Id, PM.Contacts.ModelTypeAlias, NAME_NODE_CONSTACTS);
                 model.Set(ref contacts);
                 SaveAndPublish(contacts);
-                IContent principal = GetChildNode(content.Id, PM.Principal.ModelTypeAlias, PRINCIPAL_NODE_NAME);
+                IContent principal = GetChildNode(content.Id, PM.Principal.ModelTypeAlias, NAME_NODE_PRINCIPAL);
                 model.Set(ref principal);
                 SaveAndPublish(principal);
 

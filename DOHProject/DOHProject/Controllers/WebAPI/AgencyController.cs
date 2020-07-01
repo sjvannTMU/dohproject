@@ -1,6 +1,7 @@
 ﻿using DOHProject.Controllers.WebAPI;
 using DOHProject.Models.Agency;
 using DOHProject.Repository.Agency;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Web.Http;
 using Umbraco.Web.WebApi;
@@ -8,6 +9,9 @@ using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Controllers
 {
+    /// <summary>
+    /// 機構管理
+    /// </summary>
     [RoutePrefix("api/agencies")]
     public class AgencyController : UmbracoApiController, IRESTfulOperation<AgencyViewModel>
     {
@@ -66,8 +70,17 @@ namespace DOHProject.Controllers
         [Route("")]
         public IHttpActionResult Post(AgencyViewModel model)
         {
-            var node = _ar.Create(model);
-            return Ok(node);
+            try
+            {
+                var node = _ar.Create(model);
+                return Ok(node);
+            }
+            catch (System.Exception e)
+            {
+                return Content(System.Net.HttpStatusCode.Conflict, e.Message);
+              
+            }
+           
         }
         [HttpPost]
         [Route("{pid}")]

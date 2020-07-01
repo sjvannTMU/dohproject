@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AgencyRoot>
+  <AgencyGroup GroupCode="" GroupName="" GroupZipCode="">
+    <Agency AgencyId="" agencyName=""  XAD="XAD" >
+      <Contacts></Contacts>
+      <Principal></Principal>
+      
+    </Agency>
+  </AgencyGroup>
+</AgencyRoot>

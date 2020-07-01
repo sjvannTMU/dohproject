@@ -55,7 +55,7 @@ namespace DOHProject.Repository.Agency
         }
         public override AgencyGroupViewModel Update(AgencyGroupViewModel model)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model), UPDATE_NULL_ERROR_MESSAGE);
+            if (model == null) throw new ArgumentNullException(nameof(model), MESSAGE_ERROR_UPDATENULL);
             var content = model.Id != 0 ? GetNode(model.Id) : null;
             if(content == null)
             {

@@ -2023,6 +2023,8 @@
     <Content Include="Umbraco\Views\users\views\users\users.html" />
     <Content Include="Umbraco\Views\users\views\user\details.html" />
     <Content Include="Web.config" />
+    <Content Include="xml\委員管理.xml" />
+    <Content Include="xml\機構管理.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\Models\AD.generated.cs" />
@@ -2073,7 +2075,8 @@
     <Compile Include="App_Data\Models\UsingStatus.generated.cs" />
     <Compile Include="App_Data\Models\XPN.generated.cs" />
     <Compile Include="App_Data\Models\XTN.generated.cs" />
-    <Compile Include="App_Start\SwggerComposer.cs" />
+    <Compile Include="App_Start\SwaggerDocumentFilter.cs" />
+    <Compile Include="App_Start\SwaggerComposer.cs" />
     <Compile Include="App_Start\WebApiComposer.cs" />
     <Compile Include="Controllers\WebAPI\IRESTfulOperation.cs" />
     <Compile Include="Controllers\WebAPI\AgencyController.cs" />
