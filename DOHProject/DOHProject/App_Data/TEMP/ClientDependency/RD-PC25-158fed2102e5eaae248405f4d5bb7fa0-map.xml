@@ -1,2 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<map />
+<map>
+  <item key="L2Nzcy9BcnRpY2xlLUxpc3QuY3NzOy9jc3MvQ2Fyb3VzZWwtSGVyby5jc3M7L2Nzcy9Gb290ZXItQmFzaWMuY3NzOy9jc3MvTmF2aWdhdGlvbi1DbGVhbjEuY3NzOy9jc3MvTmV3cy1DYXJkcy5jc3M7L2Nzcy9zdHlsZXMuY3NzOw" file="C:\Users\Administrator\Source\Repos\dohproject\DOHProject\DOHProject\App_Data\TEMP\ClientDependency\887414708_c2815e63f94a478ea81772ebee7bec22.cdC" compression="gzip" version="887414708">
+    <files>
+      <file name="/css/Article-List.css" />
+      <file name="/css/Carousel-Hero.css" />
+      <file name="/css/Footer-Basic.css" />
+      <file name="/css/Navigation-Clean1.css" />
+      <file name="/css/News-Cards.css" />
+      <file name="/css/styles.css" />
+    </files>
+  </item>
+  <item key="L3NjcmlwdHMvbmF2aWdhdGlvbk1lbnUuanM7" file="C:\Users\Administrator\Source\Repos\dohproject\DOHProject\DOHProject\App_Data\TEMP\ClientDependency\887414708_579bba830ec34bbbbd1d49871dc8aa56.cdJ" compression="gzip" version="887414708">
+    <files>
+      <file name="/scripts/navigationMenu.js" />
+    </files>
+  </item>
+</map>

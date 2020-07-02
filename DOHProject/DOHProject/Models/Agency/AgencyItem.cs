@@ -3,6 +3,9 @@ using DOHProject.Models.DataType;
 
 namespace DOHProject.Models.Agency
 {
+    /// <summary>
+    /// 護產機構資料欄位
+    /// </summary>
     public struct AgencyItem
     {
         /// <summary>
@@ -37,6 +40,9 @@ namespace DOHProject.Models.Agency
         /// 聯絡人
         /// </summary>
         public PersonContact Contacts { get; set; }
+        /// <summary>
+        /// 負責人
+        /// </summary>
         public PersonPrincipal Principal { get; set; }
         /// <summary>
         /// 評鑑類別名稱

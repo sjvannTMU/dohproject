@@ -17,6 +17,7 @@ namespace DOHProject.App_Start
                   c.SingleApiVersion("v1", "照護司共通交換標準");
                   c.ResolveConflictingActions(a => a.First());
                   c.DocumentFilter<SwaggerDocumentFilter>();
+                  c.IncludeXmlComments(string.Format(@"{0}\bin\SwaggerApi.xml", System.AppDomain.CurrentDomain.BaseDirectory));
 
               }).EnableSwaggerUi();
         }

@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\SwaggerApi.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2080,11 +2081,9 @@
     <Compile Include="App_Start\WebApiComposer.cs" />
     <Compile Include="Controllers\WebAPI\IRESTfulOperation.cs" />
     <Compile Include="Controllers\WebAPI\AgencyController.cs" />
-    <Compile Include="Controllers\WebAPI\CodeTableController.cs" />
     <Compile Include="Models\Agency\AgencyGroupViewModel.cs" />
     <Compile Include="Models\Agency\AgencyItem.cs" />
     <Compile Include="Models\Agency\AgencyViewModel.cs" />
-    <Compile Include="Models\CodeTable\TableCodeItem.cs" />
     <Compile Include="Models\Common\PersonContact.cs" />
     <Compile Include="Models\Common\PersonPrincipal.cs" />
     <Compile Include="Models\DataType\AddressData.cs" />
@@ -2092,7 +2091,6 @@
     <Compile Include="Models\DataType\NameData.cs" />
     <Compile Include="Models\DataType\Occupation.cs" />
     <Compile Include="Models\DataType\TELData.cs" />
-    <Compile Include="Models\EnumMaintainType.cs" />
     <Compile Include="Models\Enum\AgencyType.cs" />
     <Compile Include="Models\IContentMap.cs" />
     <Compile Include="Models\IViewModelBased.cs" />

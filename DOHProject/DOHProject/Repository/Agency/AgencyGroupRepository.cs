@@ -11,14 +11,27 @@ using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Repository.Agency
 {
+    /// <summary>
+    /// 護產機構分類儲存庫
+    /// </summary>
     public class AgencyGroupRepository : RepositoryBased<AgencyGroupViewModel>
     {
-        private UmbracoHelper _helper;
+        private readonly UmbracoHelper _helper;
 
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="service">服務</param>
+        /// <param name="helper">輔助</param>
         public AgencyGroupRepository(IContentService service, UmbracoHelper helper):base(service)
         {
             this._helper = helper;
         }
+        /// <summary>
+        /// 新增分類
+        /// </summary>
+        /// <param name="model">分類交換集</param>
+        /// <returns>分類交換集</returns>
         public override AgencyGroupViewModel Create(AgencyGroupViewModel model)
         {
             IContent p = model.PId != 0 ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
@@ -28,16 +41,32 @@ namespace DOHProject.Repository.Agency
 
             return model.Get(_helper.Content(content));
         }
+        /// <summary>
+        /// 新增分類
+        /// </summary>
+        /// <param name="pid">護產機構根目錄</param>
+        /// <param name="model">交換集</param>
+        /// <returns></returns>
         public override AgencyGroupViewModel Create(int pid, AgencyGroupViewModel model)
         {
             IContent content = CreateNewNode(pid, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);
             return model.Get(_helper.Content(content));
         }
+        /// <summary>
+        /// 取得特定分類
+        /// </summary>
+        /// <param name="id">分類代碼</param>
+        /// <returns></returns>
         public override AgencyGroupViewModel GetById(int id)
         {
             return new AgencyGroupViewModel().Get(_helper.Content(id));
         }
+        /// <summary>
+        /// 取得所有分類
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
         public override IQueryable<AgencyGroupViewModel> GetAll(int pid = 0)
         {
             IList<AgencyGroupViewModel> rList = new List<AgencyGroupViewModel>();
@@ -53,6 +82,11 @@ namespace DOHProject.Repository.Agency
             }
             return rList.AsQueryable();
         }
+        /// <summary>
+        /// 更新分類
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public override AgencyGroupViewModel Update(AgencyGroupViewModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model), MESSAGE_ERROR_UPDATENULL);

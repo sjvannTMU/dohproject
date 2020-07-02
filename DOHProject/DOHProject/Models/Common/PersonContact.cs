@@ -2,6 +2,9 @@
 
 namespace DOHProject.Models.Common
 {
+    /// <summary>
+    /// 聯絡人資料
+    /// </summary>
     public struct PersonContact
     {
         /// <summary>

@@ -5,6 +5,9 @@ using System.Web;
 
 namespace DOHProject.Models.DataType
 {
+    /// <summary>
+    /// 地址模組
+    /// </summary>
     public class AddressData
     {
         /// <summary>

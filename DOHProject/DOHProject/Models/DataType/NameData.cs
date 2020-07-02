@@ -5,6 +5,9 @@ using System.Web;
 
 namespace DOHProject.Models.DataType
 {
+    /// <summary>
+    /// 人員模組
+    /// </summary>
     public class NameData
     {
         /// <summary>

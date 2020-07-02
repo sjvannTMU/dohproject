@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace DOHProject.Models.DataType
+﻿namespace DOHProject.Models.DataType
 {
+    /// <summary>
+    /// 通訊模組
+    /// </summary>
     public class TELData
     {
+        /*
         /// <summary>
         /// 電話-住家
         /// </summary>
         //public string TELHome { get; set; }
+        */
         /// <summary>
         /// 電話-辦公室
         /// </summary>

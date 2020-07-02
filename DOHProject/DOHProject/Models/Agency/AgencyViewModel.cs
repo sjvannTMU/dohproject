@@ -10,6 +10,9 @@ using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Models.Agency
 {
+    /// <summary>
+    /// 護產機構交換資料集
+    /// </summary>
     public class AgencyViewModel : ViewModelBased, IContentMap<AgencyViewModel>
     {
         /// <summary>
@@ -22,10 +25,15 @@ namespace DOHProject.Models.Agency
         public int MainAgencyId { get; set; }
 
         /// <summary>
-        /// 機構基本資料
+        /// 機構基本資料集
         /// </summary>
         public AgencyItem Agency { get; set; }
 
+        /// <summary>
+        /// 取得交換資料集（來自資料源）
+        /// </summary>
+        /// <param name="content">資料源</param>
+        /// <returns>護產機構資料交換集-AgencyViewModel</returns>
         public AgencyViewModel Get(IPublishedContent content)
         {
             AgencyViewModel model = new AgencyViewModel();
@@ -43,6 +51,10 @@ namespace DOHProject.Models.Agency
             return model;
         }
 
+        /// <summary>
+        /// 設定資料源內容（來自交換資料集） 
+        /// </summary>
+        /// <param name="content">(參照)資料源</param>
         public void Set(ref IContent content)
         {
             content.Name = Name;

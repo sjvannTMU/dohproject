@@ -16,27 +16,43 @@ namespace DOHProject.Controllers
     public class AgencyController : UmbracoApiController, IRESTfulOperation<AgencyViewModel>
     {
 
-        private AgencyRepository _ar;
-        private AgencyGroupRepository _agr;
+        private readonly AgencyRepository _ar;
+        private readonly AgencyGroupRepository _agr;
+        /// <summary>
+        /// 建構元
+        /// </summary>
         public AgencyController()
         {
             _ar = new AgencyRepository(Services.ContentService, Umbraco);
             _agr = new AgencyGroupRepository(Services.ContentService, Umbraco);
         }
         #region Agency部份
+        /// <summary>
+        /// 取得所有護產機構
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAll()
         {
             return Json(_ar.GetAll());
         }
-
+        /// <summary>
+        /// 取得所有護產機構-從特定分類
+        /// </summary>
+        /// <param name="pid">分類節點代碼</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{pid}/agencies")]
         public IHttpActionResult GetAll(int pid)
         {
             return Json(_ar.GetAll(pid));
         }
+        /// <summary>
+        /// 取得特定護產機構
+        /// </summary>
+        /// <param name="id">護產機構代碼</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult Get(int id)
@@ -44,6 +60,11 @@ namespace DOHProject.Controllers
             var node = _ar.GetById(id);
             return (node == null) ? NotFound() : (IHttpActionResult)Json(node);
         }
+        /// <summary>
+        /// 刪除護產機構
+        /// </summary>
+        /// <param name="id">護產機構代碼</param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
@@ -59,6 +80,12 @@ namespace DOHProject.Controllers
                 return Ok();
             }
         }
+        /// <summary>
+        /// 更新護產機構
+        /// </summary>
+        /// <param name="id">護產機構代碼</param>
+        /// <param name="model">交換集</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{id}")]
         public IHttpActionResult Put(int id, [FromBody] AgencyViewModel model)
@@ -66,6 +93,11 @@ namespace DOHProject.Controllers
             var node = _ar.GetById(id);
             return node != null ? Ok(_ar.Update(model)) : (IHttpActionResult)NotFound();
         }
+        /// <summary>
+        /// 新增護產機構
+        /// </summary>
+        /// <param name="model">交換集</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post(AgencyViewModel model)
@@ -82,6 +114,12 @@ namespace DOHProject.Controllers
             }
            
         }
+        /// <summary>
+        /// 新增護產機構-指定特定分類
+        /// </summary>
+        /// <param name="pid">分類代碼</param>
+        /// <param name="model">交換集</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("{pid}")]
         public IHttpActionResult Post(int pid, AgencyViewModel model)
@@ -91,8 +129,12 @@ namespace DOHProject.Controllers
         }
 
         #endregion
-        #region AgencyGroup
 
+        #region AgencyGroup
+        /// <summary>
+        /// 取得所有護產機構分類
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Groups")]
         public IHttpActionResult GetAllGroup()
@@ -100,14 +142,22 @@ namespace DOHProject.Controllers
             var root = _agr.GetRootNode(PM.AgencyRoot.ModelTypeAlias);
             return Json(_agr.GetAll(root.Id));
         }
-
+        /// <summary>
+        /// 取得特定護產機構分類
+        /// </summary>
+        /// <param name="id">護產機構分類代碼</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Groups/{id}")]
         public IHttpActionResult GetGroup(int id)
         {
             return Json(_agr.GetById(id));
         }
-
+        /// <summary>
+        /// 新增護產機構分類
+        /// </summary>
+        /// <param name="model">分類交換集</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Groups")]
         public IHttpActionResult PostGroup(AgencyGroupViewModel model)

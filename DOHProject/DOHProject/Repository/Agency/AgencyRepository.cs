@@ -11,14 +11,30 @@ using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Repository.Agency
 {
+    /// <summary>
+    /// 護產機構儲存庫
+    /// </summary>
     public class AgencyRepository : RepositoryBased<AgencyViewModel>
     {
+        /// <summary>
+        /// 資料處理輔助
+        /// </summary>
         private UmbracoHelper _helper;
         
+        /// <summary>
+        /// 建構元 
+        /// </summary>
+        /// <param name="service">服務</param>
+        /// <param name="helper">輔助</param>
         public AgencyRepository(IContentService service, UmbracoHelper helper):base(service)
         {
             this._helper = helper;
         }
+        /// <summary>
+        /// 新增護產機構
+        /// </summary>
+        /// <param name="model">護產交換集</param>
+        /// <returns>護產交換集新增後</returns>
         public override AgencyViewModel Create(AgencyViewModel model)
         {
             IContent p = (model.PId != 0) ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
@@ -37,10 +53,20 @@ namespace DOHProject.Repository.Agency
 
             return model.Get(_helper.Content(content));
         }
+        /// <summary>
+        /// 取得特定護產機構
+        /// </summary>
+        /// <param name="id">護產機構代碼(系統產生的)</param>
+        /// <returns>護產交換集</returns>
         public override AgencyViewModel GetById(int id)
         {
             return new AgencyViewModel().Get(_helper.Content(id));
         }
+        /// <summary>
+        /// 取得所有護產機構
+        /// </summary>
+        /// <param name="pid">護產機構分類群組代碼</param>
+        /// <returns>護產機構清單</returns>
         public override IQueryable<AgencyViewModel> GetAll(int pid = 0)
         {
             IList<AgencyViewModel> rList = new List<AgencyViewModel>();
@@ -57,6 +83,11 @@ namespace DOHProject.Repository.Agency
             }
             return rList.AsQueryable();
         }
+        /// <summary>
+        /// 更新護產機構
+        /// </summary>
+        /// <param name="model">護產機構資料集</param>
+        /// <returns>護產機構交換集</returns>
         public override AgencyViewModel Update(AgencyViewModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model),MESSAGE_ERROR_UPDATENULL);

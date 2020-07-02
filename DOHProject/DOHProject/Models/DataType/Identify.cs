@@ -5,6 +5,9 @@ using System.Web;
 
 namespace DOHProject.Models.DataType
 {
+    /// <summary>
+    /// 辨識模組
+    /// </summary>
     public class Identify
     {
         /// <summary>
