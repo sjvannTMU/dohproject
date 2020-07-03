@@ -1,9 +1,13 @@
 ﻿using DOHProject.Controllers.WebAPI;
 using DOHProject.Models.Agency;
 using DOHProject.Repository.Agency;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Umbraco.Web.WebApi;
 using PM = Umbraco.Web.PublishedModels;
 
@@ -30,7 +34,13 @@ namespace DOHProject.Controllers
         /// <summary>
         /// 取得所有護產機構
         /// </summary>
+        /// <remarks>
+        /// 從護產機構根節下，取得所有護產機構。
+        /// </remarks>
         /// <returns></returns>
+        /// <response code="200">
+        /// </response>
+        [ResponseType(typeof(IEnumerable<AgencyViewModel>))]
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAll()
@@ -38,7 +48,7 @@ namespace DOHProject.Controllers
             return Json(_ar.GetAll());
         }
         /// <summary>
-        /// 取得所有護產機構-從特定分類
+        /// 取得所有護產機構
         /// </summary>
         /// <param name="pid">分類節點代碼</param>
         /// <returns></returns>

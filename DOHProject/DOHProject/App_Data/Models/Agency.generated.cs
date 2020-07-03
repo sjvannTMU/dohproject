@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Agency</summary>
 	[PublishedModel("agency")]
-	public partial class Agency : PublishedContentModel, IAD
+	public partial class Agency : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,6 +50,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("accreditationType")]
 		public string AccreditationType => this.Value<string>("accreditationType");
+
+		///<summary>
+		/// Address: 機構地址
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("address")]
+		public global::Umbraco.Web.PublishedModels.AddressElement Address => this.Value<global::Umbraco.Web.PublishedModels.AddressElement>("address");
 
 		///<summary>
 		/// Agency Alias: 機構簡稱
@@ -101,45 +108,10 @@ namespace Umbraco.Web.PublishedModels
 		public bool IsHQ => this.Value<bool>("isHQ");
 
 		///<summary>
-		/// Address Type: 地址類別
+		/// TEL: 機構通訊
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("addressType")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent AddressType => global::Umbraco.Web.PublishedModels.AD.GetAddressType(this);
-
-		///<summary>
-		/// AreaCode: 縣市代碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("areaCode")]
-		public string AreaCode => global::Umbraco.Web.PublishedModels.AD.GetAreaCode(this);
-
-		///<summary>
-		/// Area Name: 縣市名稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("areaName")]
-		public string AreaName => global::Umbraco.Web.PublishedModels.AD.GetAreaName(this);
-
-		///<summary>
-		/// Stress Address: 地址-街道名稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("stressAddress")]
-		public string StressAddress => global::Umbraco.Web.PublishedModels.AD.GetStressAddress(this);
-
-		///<summary>
-		/// Zip Code: 鄉鎮市區Zip碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("zipCode")]
-		public string ZipCode => global::Umbraco.Web.PublishedModels.AD.GetZipCode(this);
-
-		///<summary>
-		/// Zip Name: 鄉鎮市區名稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("zipName")]
-		public string ZipName => global::Umbraco.Web.PublishedModels.AD.GetZipName(this);
+		[ImplementPropertyType("tEL")]
+		public global::Umbraco.Web.PublishedModels.TelElement TEL => this.Value<global::Umbraco.Web.PublishedModels.TelElement>("tEL");
 	}
 }

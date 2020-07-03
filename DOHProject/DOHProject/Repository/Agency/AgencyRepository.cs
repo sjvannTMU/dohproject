@@ -43,10 +43,13 @@ namespace DOHProject.Repository.Agency
             
             IContent content = CreateNewNode(p.Id, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);
+
             SaveAndPublish(content);
+            //新增聯絡人子節點
             IContent contacts = CreateNewNode(content.Id, PM.Contacts.ModelTypeAlias, NAME_NODE_CONSTACTS);
             model.Set(ref contacts);
             SaveAndPublish(contacts);
+            //新增負責人子節點
             IContent principal = CreateNewNode(content.Id, PM.Principal.ModelTypeAlias, NAME_NODE_PRINCIPAL);
             model.Set(ref principal);
             SaveAndPublish(principal);

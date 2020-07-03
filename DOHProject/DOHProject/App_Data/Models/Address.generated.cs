@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Address</summary>
 	[PublishedModel("address")]
-	public partial class Address : PublishedElementModel, IAddressExt
+	public partial class Address : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -113,19 +113,5 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("use")]
 		public string Use => this.Value<string>("use");
-
-		///<summary>
-		/// City Code: 縣市代碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("cityCode")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent CityCode => global::Umbraco.Web.PublishedModels.AddressExt.GetCityCode(this);
-
-		///<summary>
-		/// Town Code: 鄉鎮市區代碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("townCode")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent TownCode => global::Umbraco.Web.PublishedModels.AddressExt.GetTownCode(this);
 	}
 }

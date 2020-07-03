@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Principal</summary>
 	[PublishedModel("principal")]
-	public partial class Principal : PublishedContentModel, IAD, IIdentify, IXPN, IXTN
+	public partial class Principal : PublishedContentModel, IPersonControls
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -52,143 +52,38 @@ namespace Umbraco.Web.PublishedModels
 		public bool IsPartTime => this.Value<bool>("isPartTime");
 
 		///<summary>
-		/// Address Type: 地址類別
+		/// Person Address
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("addressType")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent AddressType => global::Umbraco.Web.PublishedModels.AD.GetAddressType(this);
+		[ImplementPropertyType("personAddress")]
+		public global::Umbraco.Web.PublishedModels.AddressElement PersonAddress => global::Umbraco.Web.PublishedModels.PersonControls.GetPersonAddress(this);
 
 		///<summary>
-		/// AreaCode: 縣市代碼
+		/// Person Identify: 辨識資料
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("areaCode")]
-		public string AreaCode => global::Umbraco.Web.PublishedModels.AD.GetAreaCode(this);
+		[ImplementPropertyType("personIdentify")]
+		public global::Umbraco.Web.PublishedModels.IdentifyElement PersonIdentify => global::Umbraco.Web.PublishedModels.PersonControls.GetPersonIdentify(this);
 
 		///<summary>
-		/// Area Name: 縣市名稱
+		/// Person Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("areaName")]
-		public string AreaName => global::Umbraco.Web.PublishedModels.AD.GetAreaName(this);
+		[ImplementPropertyType("personName")]
+		public global::Umbraco.Web.PublishedModels.NameElement PersonName => global::Umbraco.Web.PublishedModels.PersonControls.GetPersonName(this);
 
 		///<summary>
-		/// Stress Address: 地址-街道名稱
+		/// Person Occupation: 職業內容
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("stressAddress")]
-		public string StressAddress => global::Umbraco.Web.PublishedModels.AD.GetStressAddress(this);
+		[ImplementPropertyType("personOccupation")]
+		public global::Umbraco.Web.PublishedModels.OccupationElement PersonOccupation => global::Umbraco.Web.PublishedModels.PersonControls.GetPersonOccupation(this);
 
 		///<summary>
-		/// Zip Code: 鄉鎮市區Zip碼
+		/// Person TEL: 通訊模組
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("zipCode")]
-		public string ZipCode => global::Umbraco.Web.PublishedModels.AD.GetZipCode(this);
-
-		///<summary>
-		/// Zip Name: 鄉鎮市區名稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("zipName")]
-		public string ZipName => global::Umbraco.Web.PublishedModels.AD.GetZipName(this);
-
-		///<summary>
-		/// Birthday: 生日
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("birthday")]
-		public global::System.DateTime Birthday => global::Umbraco.Web.PublishedModels.Identify.GetBirthday(this);
-
-		///<summary>
-		/// Gender: 性別
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("gender")]
-		public int Gender => global::Umbraco.Web.PublishedModels.Identify.GetGender(this);
-
-		///<summary>
-		/// SID: 身份證號
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("sID")]
-		public string SID => global::Umbraco.Web.PublishedModels.Identify.GetSID(this);
-
-		///<summary>
-		/// Family Name: 姓
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("familyName")]
-		public string FamilyName => global::Umbraco.Web.PublishedModels.XPN.GetFamilyName(this);
-
-		///<summary>
-		/// Full Name: 全名
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("fullName")]
-		public string FullName => global::Umbraco.Web.PublishedModels.XPN.GetFullName(this);
-
-		///<summary>
-		/// Given Name: 名
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("givenName")]
-		public string GivenName => global::Umbraco.Web.PublishedModels.XPN.GetGivenName(this);
-
-		///<summary>
-		/// Nick Name: 暱稱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("nickName")]
-		public string NickName => global::Umbraco.Web.PublishedModels.XPN.GetNickName(this);
-
-		///<summary>
-		/// Country Code: 國碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("countryCode")]
-		public string CountryCode => global::Umbraco.Web.PublishedModels.XTN.GetCountryCode(this);
-
-		///<summary>
-		/// Email: 電子信箱
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("email")]
-		public string Email => global::Umbraco.Web.PublishedModels.XTN.GetEmail(this);
-
-		///<summary>
-		/// Extension: 分機
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("extension")]
-		public string Extension => global::Umbraco.Web.PublishedModels.XTN.GetExtension(this);
-
-		///<summary>
-		/// Mobile: 手機號碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("mobile")]
-		public string Mobile => global::Umbraco.Web.PublishedModels.XTN.GetMobile(this);
-
-		///<summary>
-		/// Phone Area Code: 區碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("phoneAreaCode")]
-		public string PhoneAreaCode => global::Umbraco.Web.PublishedModels.XTN.GetPhoneAreaCode(this);
-
-		///<summary>
-		/// Telephone Number: 電話號碼
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("telephoneNumber")]
-		public string TelephoneNumber => global::Umbraco.Web.PublishedModels.XTN.GetTelephoneNumber(this);
-
-		///<summary>
-		/// Web Site: 網站
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
-		[ImplementPropertyType("webSite")]
-		public string WebSite => global::Umbraco.Web.PublishedModels.XTN.GetWebSite(this);
+		[ImplementPropertyType("personTEL")]
+		public global::Umbraco.Web.PublishedModels.TelElement PersonTel => global::Umbraco.Web.PublishedModels.PersonControls.GetPersonTel(this);
 	}
 }
