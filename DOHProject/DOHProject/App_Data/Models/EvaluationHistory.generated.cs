@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Evaluation History</summary>
 	[PublishedModel("evaluationHistory")]
-	public partial class EvaluationHistory : PublishedContentModel
+	public partial class EvaluationHistory : PublishedContentModel, IEvaluationControl
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -49,6 +49,6 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("evaluationItem")]
-		public global::Umbraco.Web.PublishedModels.EvaluationExperienceElement EvaluationItem => this.Value<global::Umbraco.Web.PublishedModels.EvaluationExperienceElement>("evaluationItem");
+		public global::Umbraco.Web.PublishedModels.EvaluationElement EvaluationItem => global::Umbraco.Web.PublishedModels.EvaluationControl.GetEvaluationItem(this);
 	}
 }

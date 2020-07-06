@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Experiment History</summary>
 	[PublishedModel("experimentHistory")]
-	public partial class ExperimentHistory : PublishedContentModel
+	public partial class ExperimentHistory : PublishedContentModel, IExperimentControl
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -49,6 +49,6 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("experimentItem")]
-		public global::Umbraco.Web.PublishedModels.OccupationElement ExperimentItem => this.Value<global::Umbraco.Web.PublishedModels.OccupationElement>("experimentItem");
+		public global::Umbraco.Web.PublishedModels.OccupationElement ExperimentItem => global::Umbraco.Web.PublishedModels.ExperimentControl.GetExperimentItem(this);
 	}
 }

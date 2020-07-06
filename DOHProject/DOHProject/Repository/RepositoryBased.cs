@@ -24,14 +24,7 @@ namespace DOHProject.Repository
         /// 錯誤訊息 - 資料重複
         /// </summary>
         protected const string MESSAGE_ERROR_ADDNEW = "無法新增。資料已存在";
-        /// <summary>
-        /// 節點名稱定義 - 聯絡人
-        /// </summary>
-        protected const string NAME_NODE_CONSTACTS = "聯絡人";
-        /// <summary>
-        /// 節點名稱定義 - 負責人
-        /// </summary>
-        protected const string NAME_NODE_PRINCIPAL = "負責人";
+        
         /// <summary>
         /// 建構元
         /// </summary>

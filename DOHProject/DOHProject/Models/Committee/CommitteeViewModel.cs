@@ -1,9 +1,14 @@
-﻿using DOHProject.Models.Common;
-using DOHProject.Models.Composition;
+﻿using DOHProject.App_Start;
+using DOHProject.Models.Common;
+using DOHProject.Models.DataType;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web;
+using Umbraco.Web.PublishedModels;
 using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.Committee
 {
@@ -38,9 +43,6 @@ namespace DOHProject.Models.Committee
         }
         #endregion
 
-
-
-
         /// <summary>
         /// 取得交換元
         /// </summary>
@@ -65,7 +67,36 @@ namespace DOHProject.Models.Committee
         /// <param name="content"></param>
         public void Set(ref IContent content)
         {
-            throw new NotImplementedException();
+            //主檔部份
+           if(content.ContentType.Alias == PM.Committee.ModelTypeAlias)
+            {
+                //節點名稱
+                content.Name = Name;
+                //中文 - 姓名模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.ChineseName).Alias,JsonConvert.SerializeObject(new NameData().Set(Committee.ChineseName)));
+                //英文 - 姓名模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.EnglishName).Alias, JsonConvert.SerializeObject(new NameData().Set(Committee.EnglishName)));
+                //辨識模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.Identity).Alias, JsonConvert.SerializeObject(new IdentifyData().Set(Committee.Identity)));
+                //住家 - 地址模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.HomeAddress).Alias, JsonConvert.SerializeObject(new AddressData().Set(Committee.HomeAddress)));
+                //戶籍 - 地址模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.ResidentAddress).Alias, JsonConvert.SerializeObject(new AddressData().Set(Committee.ResidentAddress)));
+                //辦公室 - 地址模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.OfficeAddress).Alias, JsonConvert.SerializeObject(new AddressData().Set(Committee.OfficeAddress)));
+                //聯絡方式 - 通訊模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.TEldata).Alias, JsonConvert.SerializeObject(new TELData().Set(Committee.TELData)));
+                //職業資訊 - 職業模組
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.Occupation).Alias, JsonConvert.SerializeObject(new OccupationData().Set(Committee.Occupation)));
+                //迴避原因 
+                content.SetValue(PM.Committee.GetModelPropertyType(f => f.AvoidReasons).Alias, Committee.AvoidReason);
+            }
+           //設定群組
+           if()
+           
+           //學歷紀錄
+           
+
         }
         #region Local Map
         /// <summary>
@@ -85,17 +116,56 @@ namespace DOHProject.Models.Committee
             item.TELData = new DataType.TELData(committee.TEldata);
             item.Occupation = new DataType.OccupationData(committee.Occupation);
             item.AvoidReason = committee.AvoidReasons;
-
-            item.EducationHistory = LocalMapForEducationHistory();
-
+            //學歷紀錄
+            var educationGroup = committee.FirstChild<PM.CommitteeSubgroup>(x => x.Name == NodeName.NodeNameEducationHistory);
+            item.EducationHistory = LocalMapForEducationHistory(educationGroup);
+            //經歷紀錄
+            var occupationGroup = committee.FirstChild<PM.CommitteeSubgroup>(x => x.Name == NodeName.NodeNameOccupationHistoy);
+            item.OccupationHistoy = LocalMapForOccupationHistory(occupationGroup);
+            //評鑑經驗紀錄
+            var evaluationGroup = committee.FirstChild<PM.CommitteeSubgroup>(x => x.Name == NodeName.NodeNameEvaluationHistory);
+            item.EvaluationHistory = localMapForEvaluationHistory(evaluationGroup);
+                
             return item;
+        }
+
+        private IEnumerable<Composition.EvaluationGroup> localMapForEvaluationHistory(CommitteeSubgroup evaluationGroup)
+        {
+            IList<Composition.EvaluationGroup> rList = new List<Composition.EvaluationGroup>();
+            if (evaluationGroup != null && evaluationGroup.Children<PM.EvaluationControl>().Any())
+            {
+                foreach (IPublishedContent c in evaluationGroup.Children<PM.EvaluationControl>())
+                    rList.Add(new Composition.EvaluationGroup().Get(c));
+            }
+            return rList;
+        }
+
+        private IEnumerable<Composition.ExperimentGroup> LocalMapForOccupationHistory(PM.CommitteeSubgroup group)
+        {
+            IList<Composition.ExperimentGroup> rList = new List<Composition.ExperimentGroup>();
+            if (group != null && group.Children<PM.ExperimentControl>().Any())
+            {
+                foreach (IPublishedContent c in group.Children<PM.ExperimentControl>())
+                    rList.Add(new Composition.ExperimentGroup().Get(c));
+            }
+            return rList;
         }
         #endregion
         #region Local Set
-        private IEnumerable<EducationControl> LocalMapForEducationHistory()
+        private LocalMapForMaster()
         {
-            IList<EducationControl> rList = new List<EducationControl>();
 
+        }
+
+
+        private IEnumerable<Composition.EducationGroup> LocalMapForEducationHistory(PM.CommitteeSubgroup group)
+        {
+            IList<Composition.EducationGroup> rList = new List<Composition.EducationGroup>();
+            if(group != null &&　group.Children<PM.EducationHistory>().Any())
+            {
+                foreach (IPublishedContent c in group.Children<PM.EducationHistory>())
+                    rList.Add(new Composition.EducationGroup().Get(c));
+            }
             return rList;
         }
         #endregion

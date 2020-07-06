@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Education History</summary>
 	[PublishedModel("educationHistory")]
-	public partial class EducationHistory : PublishedContentModel
+	public partial class EducationHistory : PublishedContentModel, IEducationControl
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -43,5 +43,26 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// DegLevel: 學歷級別
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("degLevel")]
+		public string DegLevel => global::Umbraco.Web.PublishedModels.EducationControl.GetDegLevel(this);
+
+		///<summary>
+		/// DegYear: 畢業年度
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("degYear")]
+		public string DegYear => global::Umbraco.Web.PublishedModels.EducationControl.GetDegYear(this);
+
+		///<summary>
+		/// School: 學校
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		[ImplementPropertyType("school")]
+		public global::Umbraco.Web.PublishedModels.SchoolElement School => global::Umbraco.Web.PublishedModels.EducationControl.GetSchool(this);
 	}
 }

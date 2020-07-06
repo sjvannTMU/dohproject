@@ -2058,8 +2058,10 @@
     <Compile Include="App_Data\Models\DegreenElement.generated.cs" />
     <Compile Include="App_Data\Models\EducationControl.generated.cs" />
     <Compile Include="App_Data\Models\EducationHistory.generated.cs" />
-    <Compile Include="App_Data\Models\EvaluationExperienceElement.generated.cs" />
+    <Compile Include="App_Data\Models\EvaluationControl.generated.cs" />
+    <Compile Include="App_Data\Models\EvaluationElement.generated.cs" />
     <Compile Include="App_Data\Models\EvaluationHistory.generated.cs" />
+    <Compile Include="App_Data\Models\ExperimentControl.generated.cs" />
     <Compile Include="App_Data\Models\ExperimentHistory.generated.cs" />
     <Compile Include="App_Data\Models\File.generated.cs" />
     <Compile Include="App_Data\Models\Folder.generated.cs" />
@@ -2088,6 +2090,11 @@
     <Compile Include="App_Data\Models\TelElement.generated.cs" />
     <Compile Include="App_Data\Models\UmbracoUrlAliasControls.generated.cs" />
     <Compile Include="App_Data\Models\UsingStatus.generated.cs" />
+    <Compile Include="App_Start\NodeName.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NodeName.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\SwaggerDocumentFilter.cs" />
     <Compile Include="App_Start\SwaggerComposer.cs" />
     <Compile Include="App_Start\WebApiComposer.cs" />
@@ -2099,12 +2106,14 @@
     <Compile Include="Models\CodeTable\TableCodeItem.cs" />
     <Compile Include="Models\Committee\CommitteeViewModel.cs" />
     <Compile Include="Models\Committee\EvaluationExperience.cs" />
+    <Compile Include="Models\Composition\EvaluationGroup.cs" />
+    <Compile Include="Models\Composition\ExperimentGroup.cs" />
     <Compile Include="Models\IElementMap.cs" />
     <Compile Include="Models\Person\PersonCommittee.cs" />
     <Compile Include="Models\Person\PersonContact.cs" />
     <Compile Include="Models\Person\PersonPrincipal.cs" />
     <Compile Include="Models\DataType\AddressData.cs" />
-    <Compile Include="Models\Composition\EducationControl.cs" />
+    <Compile Include="Models\Composition\EducationGroup.cs" />
     <Compile Include="Models\DataType\EvaluationData.cs" />
     <Compile Include="Models\DataType\IdentifyData.cs" />
     <Compile Include="Models\DataType\LifeStyleData.cs" />
@@ -2119,6 +2128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Agency\AgencyGroupRepository.cs" />
     <Compile Include="Repository\Agency\AgencyRepository.cs" />
+    <Compile Include="Repository\Committee\CommitteeRepository.cs" />
     <Compile Include="Repository\IRepositoryContent.cs" />
     <Compile Include="Repository\IRepositoryOperation.cs" />
     <Compile Include="Repository\RepositoryBased.cs" />
@@ -2255,7 +2265,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="App_Start\NodeName.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NodeName.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

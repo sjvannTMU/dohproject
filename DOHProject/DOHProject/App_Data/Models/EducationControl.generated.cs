@@ -19,9 +19,26 @@ using Umbraco.ModelsBuilder.Embedded;
 
 namespace Umbraco.Web.PublishedModels
 {
+	// Mixin Content Type with alias "educationControl"
+	/// <summary>Education Control</summary>
+	public partial interface IEducationControl : IPublishedContent
+	{
+		/// <summary>DegLevel</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string DegLevel { get; }
+
+		/// <summary>DegYear</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		string DegYear { get; }
+
+		/// <summary>School</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		global::Umbraco.Web.PublishedModels.SchoolElement School { get; }
+	}
+
 	/// <summary>Education Control</summary>
 	[PublishedModel("educationControl")]
-	public partial class EducationControl : PublishedContentModel
+	public partial class EducationControl : PublishedContentModel, IEducationControl
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -49,20 +66,32 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("degLevel")]
-		public string DegLevel => this.Value<string>("degLevel");
+		public string DegLevel => GetDegLevel(this);
+
+		/// <summary>Static getter for DegLevel</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetDegLevel(IEducationControl that) => that.Value<string>("degLevel");
 
 		///<summary>
 		/// DegYear: 畢業年度
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("degYear")]
-		public string DegYear => this.Value<string>("degYear");
+		public string DegYear => GetDegYear(this);
+
+		/// <summary>Static getter for DegYear</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static string GetDegYear(IEducationControl that) => that.Value<string>("degYear");
 
 		///<summary>
 		/// School: 學校
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
 		[ImplementPropertyType("school")]
-		public global::Umbraco.Web.PublishedModels.SchoolElement School => this.Value<global::Umbraco.Web.PublishedModels.SchoolElement>("school");
+		public global::Umbraco.Web.PublishedModels.SchoolElement School => GetSchool(this);
+
+		/// <summary>Static getter for School</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.6.1")]
+		public static global::Umbraco.Web.PublishedModels.SchoolElement GetSchool(IEducationControl that) => that.Value<global::Umbraco.Web.PublishedModels.SchoolElement>("school");
 	}
 }

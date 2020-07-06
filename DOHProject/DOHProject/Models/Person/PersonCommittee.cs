@@ -50,15 +50,15 @@ namespace DOHProject.Models.Common
         /// <summary>
         /// 學歷
         /// </summary>
-        public IEnumerable<EducationControl> EducationHistory { get; set; }
+        public IEnumerable<EducationGroup> EducationHistory { get; set; }
         /// <summary>
         /// 經歷
         /// </summary>
-        public IEnumerable<OccupationData> OccupationHistoy { get; set; }
+        public IEnumerable<ExperimentGroup> OccupationHistoy { get; set; }
         /// <summary>
         /// 評鑑經歷
         /// </summary>
-        public IEnumerable<EvaluationExperience> EvaluationExperiencesHistory { get; set; }
+        public IEnumerable<EvaluationGroup> EvaluationHistory { get; set; }
         /// <summary>
         /// 迴避原因
         /// </summary>

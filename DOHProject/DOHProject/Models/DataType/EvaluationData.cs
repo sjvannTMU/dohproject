@@ -1,26 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+using Umbraco.Core.Models;
+using Umbraco.Core.Models.PublishedContent;
+using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
     /// 評鑑資料
     /// </summary>
-    public class EvaluationData
+    public class EvaluationData : IContentMap<EvaluationData>, IElementMap<EvaluationData>
     {
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        public EvaluationData() { }
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="content"></param>
+        public EvaluationData(IPublishedContent content)
+        {
+            if(content != null && content.ContentType.Alias == PM.EvaluationElement.ModelTypeAlias)
+            {
+               PM.EvaluationElement item = new PM.EvaluationElement(content);
+                EvaluateYear = item.Year;
+                Remark = item.Remark;
+                Domain = item.Domain;  
+            }
+        }
         /// <summary>
         /// 評鑑年度 - 民國年
         /// </summary>
         public int EvaluateYear { get; set; }
         /// <summary>
-        /// 評鑑申請開始時間
+        /// 備註
         /// </summary>
-        public DateTime ApplyStartDate { get; set; }
+        public string Remark { get; set; }
         /// <summary>
-        /// 評鑑申請結束時間
+        ///領域
         /// </summary>
-        public DateTime ApplyEndDate { get; set; }
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// 取交換元
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public EvaluationData Get(IPublishedContent content)
+        {
+            return new EvaluationData(content);
+        }
+        /// <summary>
+        /// 設資料元
+        /// </summary>
+        /// <param name="content"></param>
+        public void Set(ref IContent content)
+        {
+           if(content != null && content.ContentType.Alias == PM.EvaluationElement.ModelTypeAlias)
+            {
+                content.SetValue(PM.EvaluationElement.GetModelPropertyType(f => f.Year).Alias, EvaluateYear);
+                content.SetValue(PM.EvaluationElement.GetModelPropertyType(f => f.Remark).Alias, Remark);
+                content.SetValue(PM.EvaluationElement.GetModelPropertyType(f => f.Domain).Alias, Domain);
+            }
+        }
+        /// <summary>
+        /// 取得交換元序列
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public Dictionary<string, object> Set(EvaluationData item)
+        {
+            Dictionary<string, object> local = new Dictionary<string, object>
+            {
+                {PM.EvaluationElement.GetModelPropertyType(f=>f.Year).Alias, EvaluateYear },
+                {PM.EvaluationElement.GetModelPropertyType(f=>f.Remark).Alias, Remark },
+                {PM.EvaluationElement.GetModelPropertyType(f=>f.Domain).Alias, Domain }
+            };
+            return local;
+        }
     }
 }

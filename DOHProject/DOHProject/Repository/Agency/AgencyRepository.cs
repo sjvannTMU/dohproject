@@ -1,4 +1,5 @@
-﻿using DOHProject.Models.Agency;
+﻿using DOHProject.App_Start;
+using DOHProject.Models.Agency;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,19 +39,19 @@ namespace DOHProject.Repository.Agency
         public override AgencyViewModel Create(AgencyViewModel model)
         {
             IContent p = (model.PId != 0) ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
-            var childNode = GetChildNodes(p.Id, PM.Agency.ModelTypeAlias).Where(x => x.GetValue<string>(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias) == model.Agency.AgencyId);
-            if (childNode != null || childNode.Any()) throw new Exception(MESSAGE_ERROR_ADDNEW);
+            var childNodes = GetChildNodes(p.Id, PM.Agency.ModelTypeAlias).Where(x => x.GetValue<string>(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias) == model.Agency.AgencyId);
+            if (childNodes != null || childNodes.Any()) throw new Exception(MESSAGE_ERROR_ADDNEW);
             
             IContent content = CreateNewNode(p.Id, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);
-
             SaveAndPublish(content);
+
             //新增聯絡人子節點
-            IContent contacts = CreateNewNode(content.Id, PM.Contacts.ModelTypeAlias, NAME_NODE_CONSTACTS);
+            IContent contacts = CreateNewNode(content.Id, PM.Contacts.ModelTypeAlias, NodeName.NodeNameContracts);
             model.Set(ref contacts);
             SaveAndPublish(contacts);
             //新增負責人子節點
-            IContent principal = CreateNewNode(content.Id, PM.Principal.ModelTypeAlias, NAME_NODE_PRINCIPAL);
+            IContent principal = CreateNewNode(content.Id, PM.Principal.ModelTypeAlias, NodeName.NodeNamePricipal);
             model.Set(ref principal);
             SaveAndPublish(principal);
 
@@ -103,10 +104,10 @@ namespace DOHProject.Repository.Agency
             {
                 model.Set(ref content);
                 SaveAndPublish(content);
-                IContent contacts = GetChildNode(content.Id, PM.Contacts.ModelTypeAlias, NAME_NODE_CONSTACTS);
+                IContent contacts = GetChildNode(content.Id, PM.Contacts.ModelTypeAlias, NodeName.NodeNameContracts);
                 model.Set(ref contacts);
                 SaveAndPublish(contacts);
-                IContent principal = GetChildNode(content.Id, PM.Principal.ModelTypeAlias, NAME_NODE_PRINCIPAL);
+                IContent principal = GetChildNode(content.Id, PM.Principal.ModelTypeAlias, NodeName.NodeNamePricipal);
                 model.Set(ref principal);
                 SaveAndPublish(principal);
 
