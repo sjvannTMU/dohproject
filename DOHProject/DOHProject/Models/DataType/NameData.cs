@@ -61,7 +61,8 @@ namespace DOHProject.Models.DataType
         /// 取資料源
         /// </summary>
         /// <param name="content"></param>
-        public void Set(ref IContent content)
+        /// <param name="index"></param>
+        public void Set(ref IContent content, int index = 0)
         {
             if (content != null && content.ContentType.Alias == PM.NameElement.ModelTypeAlias)
             {
@@ -69,7 +70,6 @@ namespace DOHProject.Models.DataType
                 content.SetValue(PM.NameElement.GetModelPropertyType(f => f.FamilyName).Alias, FamilyName);
                 content.SetValue(PM.NameElement.GetModelPropertyType(f => f.GivenName).Alias, GivenName);
                 //content.SetValue(PM.NameElement.GetModelPropertyType(f => f.NickName).Alias, NickName);
-
             }
         }
         /// <summary>

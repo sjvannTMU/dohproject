@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using PM = Umbraco.Web.PublishedModels;
@@ -46,7 +43,8 @@ namespace DOHProject.Models.DataType
         /// 設資料元
         /// </summary>
         /// <param name="content"></param>
-        public void Set(ref IContent content)
+        /// <param name="index"></param>
+        public void Set(ref IContent content, int index = 0)
         {
             if(content != null && content.ContentType.Alias == PM.LifeStyleElement.ModelTypeAlias)
             {

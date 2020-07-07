@@ -11,7 +11,7 @@ namespace DOHProject.Models
     interface IContentMap<out T> where T : class
     {
         T Get(IPublishedContent content);
-        void Set(ref IContent content);
-
+        void Set(ref IContent content, int index = 0);
+      
     }
 }

@@ -50,22 +50,22 @@ namespace DOHProject.Models.Common
         /// <summary>
         /// 學歷
         /// </summary>
-        public IEnumerable<EducationGroup> EducationHistory { get; set; }
+        public EducationGroup[] EducationHistory { get; set; }
         /// <summary>
         /// 經歷
         /// </summary>
-        public IEnumerable<ExperimentGroup> OccupationHistoy { get; set; }
+        public ExperimentGroup[] OccupationHistoy { get; set; }
         /// <summary>
         /// 評鑑經歷
         /// </summary>
-        public IEnumerable<EvaluationGroup> EvaluationHistory { get; set; }
+        public EvaluationGroup[] EvaluationHistory { get; set; }
         /// <summary>
         /// 迴避原因
         /// </summary>
-        public IEnumerable<string> AvoidReason { get; set; }
+        public string[] AvoidReason { get; set; }
         /// <summary>
         /// 領域別
         /// </summary>
-        public IEnumerable<TableCodeItem> DomainList { get; set; }
+        public TableCodeItem[] DomainList { get; set; }
     }
 }

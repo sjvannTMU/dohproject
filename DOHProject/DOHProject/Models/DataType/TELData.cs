@@ -80,7 +80,7 @@ namespace DOHProject.Models.DataType
         /// 設資料源
         /// </summary>
         /// <param name="content"></param>
-        public void Set(ref IContent content)
+        public void Set(ref IContent content, int index= 0)
         {
             if (content != null && content.ContentType.Alias == PM.TelElement.ModelTypeAlias)
             {

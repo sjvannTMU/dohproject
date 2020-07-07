@@ -2090,6 +2090,11 @@
     <Compile Include="App_Data\Models\TelElement.generated.cs" />
     <Compile Include="App_Data\Models\UmbracoUrlAliasControls.generated.cs" />
     <Compile Include="App_Data\Models\UsingStatus.generated.cs" />
+    <Compile Include="App_Start\ErrorMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessage.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\NodeName.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2098,6 +2103,7 @@
     <Compile Include="App_Start\SwaggerDocumentFilter.cs" />
     <Compile Include="App_Start\SwaggerComposer.cs" />
     <Compile Include="App_Start\WebApiComposer.cs" />
+    <Compile Include="Controllers\WebAPI\CommitteeController.cs" />
     <Compile Include="Controllers\WebAPI\IRESTfulOperation.cs" />
     <Compile Include="Controllers\WebAPI\AgencyController.cs" />
     <Compile Include="Models\Agency\AgencyGroupViewModel.cs" />
@@ -2266,6 +2272,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Start\ErrorMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_Start\NodeName.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NodeName.Designer.cs</LastGenOutput>

@@ -1,11 +1,7 @@
 ﻿using DOHProject.Controllers.WebAPI;
 using DOHProject.Models.Agency;
 using DOHProject.Repository.Agency;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Umbraco.Web.WebApi;
@@ -38,8 +34,7 @@ namespace DOHProject.Controllers
         /// 從護產機構根節下，取得所有護產機構。
         /// </remarks>
         /// <returns></returns>
-        /// <response code="200">
-        /// </response>
+        /// <response code="200">新增機構成功</response>
         [ResponseType(typeof(IEnumerable<AgencyViewModel>))]
         [HttpGet]
         [Route("")]
@@ -50,7 +45,7 @@ namespace DOHProject.Controllers
         /// <summary>
         /// 取得所有護產機構
         /// </summary>
-        /// <param name="pid">分類節點代碼</param>
+        /// <param name="pid">分類節點流水號</param>
         /// <returns></returns>
         [HttpGet]
         [Route("{pid}/agencies")]

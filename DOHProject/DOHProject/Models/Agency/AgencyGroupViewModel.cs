@@ -32,9 +32,11 @@ namespace DOHProject.Models.Agency
         /// 設定護產機構分類群組
         /// </summary>
         /// <param name="content">（參照）資料源</param>
-        public void Set(ref IContent content)
+        /// <param name="index">有多筆時使用</param>
+        public void Set(ref IContent content, int index = 0)
         {
             content.Name = Name;
         }
+
     }
 }

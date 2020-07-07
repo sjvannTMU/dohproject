@@ -16,14 +16,6 @@ namespace DOHProject.Repository
     /// <typeparam name="T"></typeparam>
     public partial class RepositoryBased<T> : RepositoryContent, IRepositoryOperation<T> where T : class
     {
-        /// <summary>
-        /// 錯誤訊息 - 更新時不可為Null
-        /// </summary>
-        protected const string MESSAGE_ERROR_UPDATENULL = "更新時ViewModel不可為Null";
-        /// <summary>
-        /// 錯誤訊息 - 資料重複
-        /// </summary>
-        protected const string MESSAGE_ERROR_ADDNEW = "無法新增。資料已存在";
         
         /// <summary>
         /// 建構元

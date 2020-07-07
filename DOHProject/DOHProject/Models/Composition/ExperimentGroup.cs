@@ -47,7 +47,8 @@ namespace DOHProject.Models.Composition
         /// 設定資料元
         /// </summary>
         /// <param name="content"></param>
-        public void Set(ref IContent content)
+        /// <param name="index"></param>
+        public void Set(ref IContent content, int index = 0)
         {
             content.Name = content.Name;
             if (content != null && content.ContentType.Alias == PM.ExperimentControl.ModelTypeAlias)

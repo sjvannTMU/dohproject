@@ -40,7 +40,7 @@ namespace DOHProject.Repository.Agency
         {
             IContent p = (model.PId != 0) ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
             var childNodes = GetChildNodes(p.Id, PM.Agency.ModelTypeAlias).Where(x => x.GetValue<string>(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias) == model.Agency.AgencyId);
-            if (childNodes != null || childNodes.Any()) throw new Exception(MESSAGE_ERROR_ADDNEW);
+            if (childNodes != null || childNodes.Any()) throw new Exception(ErrorMessage.AddDuplicate);
             
             IContent content = CreateNewNode(p.Id, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);
@@ -94,8 +94,8 @@ namespace DOHProject.Repository.Agency
         /// <returns>護產機構交換集</returns>
         public override AgencyViewModel Update(AgencyViewModel model)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model),MESSAGE_ERROR_UPDATENULL);
-            var content = model.Id != 0 ? GetNode(model.Id) : null;
+            if (model == null) throw new ArgumentNullException(nameof(model),ErrorMessage.UpdateNull);
+            var content = GetNode(model.Id);
             if(content == null)
             {
                 return model;

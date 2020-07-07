@@ -1,4 +1,5 @@
-﻿using DOHProject.Models.Agency;
+﻿using DOHProject.App_Start;
+using DOHProject.Models.Agency;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -89,7 +90,7 @@ namespace DOHProject.Repository.Agency
         /// <returns></returns>
         public override AgencyGroupViewModel Update(AgencyGroupViewModel model)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model), MESSAGE_ERROR_UPDATENULL);
+            if (model == null) throw new ArgumentNullException(nameof(model), ErrorMessage.UpdateNull);
             var content = model.Id != 0 ? GetNode(model.Id) : null;
             if(content == null)
             {
