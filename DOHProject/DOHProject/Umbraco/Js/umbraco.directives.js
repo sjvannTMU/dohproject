@@ -1306,14 +1306,14 @@ Use this directive to render drawer view
 @scope
 
 @description
-<b>Added in Umbraco 7.8</b>. The tour component is a global component and is already added to the umbraco markup. 
-In the Umbraco UI the tours live in the "Help drawer" which opens when you click the Help-icon in the bottom left corner of Umbraco. 
-You can easily add you own tours to the Help-drawer or show and start tours from 
+<b>Added in Umbraco 7.8</b>. The tour component is a global component and is already added to the umbraco markup.
+In the Umbraco UI the tours live in the "Help drawer" which opens when you click the Help-icon in the bottom left corner of Umbraco.
+You can easily add you own tours to the Help-drawer or show and start tours from
 anywhere in the Umbraco backoffice. To see a real world example of a custom tour implementation, install <a href="https://our.umbraco.com/projects/starter-kits/the-starter-kit/">The Starter Kit</a> in Umbraco 7.8
 
 <h1><b>Extending the help drawer with custom tours</b></h1>
-The easiet way to add new tours to Umbraco is through the Help-drawer. All it requires is a my-tour.json file. 
-Place the file in <i>App_Plugins/{MyPackage}/backoffice/tours/{my-tour}.json</i> and it will automatically be 
+The easiet way to add new tours to Umbraco is through the Help-drawer. All it requires is a my-tour.json file.
+Place the file in <i>App_Plugins/{MyPackage}/backoffice/tours/{my-tour}.json</i> and it will automatically be
 picked up by Umbraco and shown in the Help-drawer.
 
 <h3><b>The tour object</b></h3>
@@ -1327,7 +1327,7 @@ The tour object consist of two parts - The overall tour configuration and a list
     "groupOrder": 200 // Control the order of tour groups
     "allowDisable": // Adds a "Don't" show this tour again"-button to the intro step
     "culture" : // From v7.11+. Specifies the culture of the tour (eg. en-US), if set the tour will only be shown to users with this culture set on their profile. If omitted or left empty the tour will be visible to all users
-    "requiredSections":["content", "media", "mySection"] // Sections that the tour will access while running, if the user does not have access to the required tour sections, the tour will not load.   
+    "requiredSections":["content", "media", "mySection"] // Sections that the tour will access while running, if the user does not have access to the required tour sections, the tour will not load.
     "steps": [] // tour steps - see next example
 }
 </pre>
@@ -1344,11 +1344,12 @@ The tour object consist of two parts - The overall tour configuration and a list
     "backdropOpacity": 0.4 // the backdrop opacity
     "view": "" // add a custom view
     "customProperties" : {} // add any custom properties needed for the custom view
+    "skipStepIfVisible": ".dashboard div [data-element='my-tour-button']" // if we can find this DOM element on the page then we will skip this step
 }
 </pre>
 
 <h1><b>Adding tours to other parts of the Umbraco backoffice</b></h1>
-It is also possible to add a list of custom tours to other parts of the Umbraco backoffice, 
+It is also possible to add a list of custom tours to other parts of the Umbraco backoffice,
 as an example on a Dashboard in a Custom section. You can then use the {@link umbraco.services.tourService tourService} to start and stop tours but you don't have to register them as part of the tour service.
 
 <h1><b>Using the tour service</b></h1>
@@ -1387,7 +1388,8 @@ as an example on a Dashboard in a Custom section. You can then use the {@link um
                         "element": "[data-element='my-tour-button']",
                         "title": "Click the button",
                         "content": "Click the button",
-                        "event": "click"
+                        "event": "click",
+                        "skipStepIfVisible": "[data-element='my-other-tour-button']"
                     }
                 ]
             };
@@ -1544,8 +1546,23 @@ In the following example you see how to run some custom logic before a step goes
                     scope.model.currentStepIndex++;
                     // make sure we don't go too far
                     if (scope.model.currentStepIndex !== scope.model.steps.length) {
-                        startStep();    // tour completed - final step
+                        var upcomingStep = scope.model.steps[scope.model.currentStepIndex];
+                        // If the currentStep JSON object has 'skipStepIfVisible'
+                        // It's a DOM selector - if we find it then we ship over this step
+                        if (upcomingStep.skipStepIfVisible) {
+                            var tryFindDomEl = document.querySelector(upcomingStep.skipStepIfVisible);
+                            if (tryFindDomEl) {
+                                // check if element is visible:
+                                if (tryFindDomEl.offsetWidth || tryFindDomEl.offsetHeight || tryFindDomEl.getClientRects().length) {
+                                    // if it was visible then we skip the step.
+                                    nextStep();
+                                    return;
+                                }
+                            }
+                        }
+                        startStep();
                     } else {
+                        // tour completed - final step
                         scope.loadingStep = true;
                         waitForPendingRerequests().then(function () {
                             scope.loadingStep = false;
@@ -8718,12 +8735,16 @@ Opens an overlay to show a custom YSOD. </br>
             transclude: true,
             restrict: 'E',
             replace: true,
-            template: '<div class="umb-property"> <ng-form name="propertyForm"> <div class="control-group umb-control-group" ng-class="{hidelabel:property.hideLabel, \'umb-control-group__listview\': property.alias === \'_umb_containerView\'}"> <val-property-msg></val-property-msg> <div class="umb-el-wrap"> <div class="control-header" ng-hide="property.hideLabel === true"> <small ng-if="showInherit" class="db" style="padding-top: 0; margin-bottom: 5px;"> <localize key="contentTypeEditor_inheritedFrom"></localize> {{inheritsFrom}} </small> <label class="control-label" for="{{property.alias}}" ng-attr-title="{{propertyAlias}}"> {{property.label}} <span ng-if="property.validation.mandatory"> <strong class="umb-control-required">*</strong> </span> </label> <umb-property-actions actions="propertyActions"></umb-property-actions> <small class="control-description" ng-bind-html="property.description | preserveNewLineInHtml"></small> </div> <div class="controls" ng-transclude> </div> </div> </div> </ng-form> </div> ',
+            template: '<div class="umb-property"> <ng-form name="propertyForm"> <div class="control-group umb-control-group" ng-class="{hidelabel:property.hideLabel, \'umb-control-group__listview\': property.alias === \'_umb_containerView\'}"> <val-property-msg></val-property-msg> <div class="umb-el-wrap"> <div class="control-header" ng-hide="property.hideLabel === true"> <small ng-if="showInherit" class="db" style="padding-top: 0; margin-bottom: 5px;"> <localize key="contentTypeEditor_inheritedFrom"></localize> {{inheritsFrom}} </small> <label class="control-label" for="{{property.alias}}" ng-attr-title="{{controlLabelTitle}}"> {{property.label}} <span ng-if="property.validation.mandatory"> <strong class="umb-control-required">*</strong> </span> </label> <umb-property-actions actions="propertyActions"></umb-property-actions> <small class="control-description" ng-bind-html="property.description | preserveNewLineInHtml"></small> </div> <div class="controls" ng-transclude> </div> </div> </div> </ng-form> </div> ',
             link: function link(scope) {
-                userService.getCurrentUser().then(function (u) {
-                    var isAdmin = u.userGroups.indexOf('admin') !== -1;
-                    scope.propertyAlias = Umbraco.Sys.ServerVariables.isDebuggingEnabled === true || isAdmin ? scope.property.alias : null;
-                });
+                scope.controlLabelTitle = null;
+                if (Umbraco.Sys.ServerVariables.isDebuggingEnabled) {
+                    userService.getCurrentUser().then(function (u) {
+                        if (u.allowedSections.indexOf('settings') !== -1 ? true : false) {
+                            scope.controlLabelTitle = scope.property.alias;
+                        }
+                    });
+                }
             },
             //Define a controller for this directive to expose APIs to other directives
             controller: function controller($scope) {
@@ -14284,15 +14305,19 @@ Use this directive to generate a thumbnail grid of media items.
                 if (!scope.editLabelKey) {
                     scope.editLabelKey = 'general_edit';
                 }
-                userService.getCurrentUser().then(function (u) {
-                    var isAdmin = u.userGroups.indexOf('admin') !== -1;
-                    scope.alias = Umbraco.Sys.ServerVariables.isDebuggingEnabled === true || isAdmin ? scope.alias : null;
-                });
+                scope.nodeNameTitle = null;
+                if (Umbraco.Sys.ServerVariables.isDebuggingEnabled) {
+                    userService.getCurrentUser().then(function (u) {
+                        if (u.allowedSections.indexOf('settings') !== -1 ? true : false) {
+                            scope.nodeNameTitle = scope.alias;
+                        }
+                    });
+                }
             }
             var directive = {
                 restrict: 'E',
                 replace: true,
-                template: '<div class="umb-node-preview" ng-class="{\'umb-node-preview--sortable\': sortable, \'umb-node-preview--unpublished\': published === false }"> <div class="flex">  <i ng-if="icon" class="umb-node-preview__icon {{ icon }}" aria-hidden="true"></i> <div class="umb-node-preview__content"> <div class="umb-node-preview__name" ng-attr-title="{{alias}}">{{ name }}</div> <div class="umb-node-preview__description" ng-if="description">{{ description }}</div> <div class="umb-user-group-preview__permissions" ng-if="permissions"> <span> <span class="bold"><localize key="general_rights">Permissions</localize>:</span> <span ng-repeat="permission in permissions" class="umb-user-group-preview__permission">{{ permission.name }}</span> </span> </div> </div> </div> <div class="umb-node-preview__actions">  <a class="umb-node-preview__action" title="Edit {{name}}" ng-href="{{editUrl}}" ng-if="allowEdit && editUrl" ng-click="onEdit()"> <localize key="general_edit">Edit</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action" title="Edit {{name}}" ng-if="allowEdit && !editUrl" ng-click="onEdit()"> <localize key="general_edit">Edit</localize> <span class="sr-only">{{name}}...</span> </button>  <a class="umb-node-preview__action" title="Open {{name}}" ng-href="{{openUrl}}" ng-if="allowOpen && openUrl" ng-click="onOpen()"> <localize key="general_open">Open</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action" title="Open {{name}}" ng-if="allowOpen && !openUrl" ng-click="onOpen()"> <localize key="general_open">Open</localize> <span class="sr-only">{{name}}...</span> </button>  <a class="umb-node-preview__action umb-node-preview__action--red" title="Remove {{name}}" ng-href="{{removeUrl}}" ng-if="allowRemove && removeUrl" ng-click="onRemove()"> <localize key="general_remove">Remove</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action umb-node-preview__action--red" title="Remove {{name}}" ng-if="allowRemove && !removeUrl" ng-click="onRemove()"> <localize key="general_remove">Remove</localize> <span class="sr-only">{{name}}</span> </button> </div> </div> ',
+                template: '<div class="umb-node-preview" ng-class="{\'umb-node-preview--sortable\': sortable, \'umb-node-preview--unpublished\': published === false }"> <div class="flex">  <i ng-if="icon" class="umb-node-preview__icon {{ icon }}" aria-hidden="true"></i> <div class="umb-node-preview__content"> <div class="umb-node-preview__name" ng-attr-title="{{nodeNameTitle}}">{{ name }}</div> <div class="umb-node-preview__description" ng-if="description">{{ description }}</div> <div class="umb-user-group-preview__permissions" ng-if="permissions"> <span> <span class="bold"><localize key="general_rights">Permissions</localize>:</span> <span ng-repeat="permission in permissions" class="umb-user-group-preview__permission">{{ permission.name }}</span> </span> </div> </div> </div> <div class="umb-node-preview__actions">  <a class="umb-node-preview__action" title="Edit {{name}}" ng-href="{{editUrl}}" ng-if="allowEdit && editUrl" ng-click="onEdit()"> <localize key="general_edit">Edit</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action" title="Edit {{name}}" ng-if="allowEdit && !editUrl" ng-click="onEdit()"> <localize key="general_edit">Edit</localize> <span class="sr-only">{{name}}...</span> </button>  <a class="umb-node-preview__action" title="Open {{name}}" ng-href="{{openUrl}}" ng-if="allowOpen && openUrl" ng-click="onOpen()"> <localize key="general_open">Open</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action" title="Open {{name}}" ng-if="allowOpen && !openUrl" ng-click="onOpen()"> <localize key="general_open">Open</localize> <span class="sr-only">{{name}}...</span> </button>  <a class="umb-node-preview__action umb-node-preview__action--red" title="Remove {{name}}" ng-href="{{removeUrl}}" ng-if="allowRemove && removeUrl" ng-click="onRemove()"> <localize key="general_remove">Remove</localize> <span class="sr-only">{{name}}</span> </a> <button type="button" class="umb-node-preview__action umb-node-preview__action--red" title="Remove {{name}}" ng-if="allowRemove && !removeUrl" ng-click="onRemove()"> <localize key="general_remove">Remove</localize> <span class="sr-only">{{name}}</span> </button> </div> </div> ',
                 scope: {
                     icon: '=?',
                     name: '=',

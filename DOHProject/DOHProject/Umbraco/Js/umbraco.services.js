@@ -877,6 +877,7 @@
  *
  */
     function clipboardService(notificationsService, eventsService, localStorageService, iconHelper) {
+        var clearPropertyResolvers = [];
         var STORAGE_KEY = 'umbClipboardService';
         var retriveStorage = function retriveStorage() {
             if (localStorageService.isSupported === false) {
@@ -907,12 +908,25 @@
             }
             return false;
         };
-        var prepareEntryForStorage = function prepareEntryForStorage(entryData) {
-            var shallowCloneData = Object.assign({}, entryData);
-            // Notice only a shallow copy, since we dont need to deep copy. (that will happen when storing the data)
-            delete shallowCloneData.key;
-            delete shallowCloneData.$$hashKey;
-            return shallowCloneData;
+        function clearPropertyForStorage(prop) {
+            for (var i = 0; i < clearPropertyResolvers.length; i++) {
+                clearPropertyResolvers[i](prop, clearPropertyForStorage);
+            }
+        }
+        var prepareEntryForStorage = function prepareEntryForStorage(entryData, firstLevelClearupMethod) {
+            var cloneData = angular.copy(entryData);
+            if (firstLevelClearupMethod != undefined) {
+                firstLevelClearupMethod(cloneData);
+            }
+            // remove keys from sub-entries
+            for (var t = 0; t < cloneData.variants[0].tabs.length; t++) {
+                var tab = cloneData.variants[0].tabs[t];
+                for (var p = 0; p < tab.properties.length; p++) {
+                    var prop = tab.properties[p];
+                    clearPropertyForStorage(prop);
+                }
+            }
+            return cloneData;
         };
         var isEntryCompatible = function isEntryCompatible(entry, type, allowedAliases) {
             return entry.type === type && (entry.alias && allowedAliases.filter(function (allowedAlias) {
@@ -926,6 +940,19 @@
         var service = {};
         /**
   * @ngdoc method
+  * @name umbraco.services.clipboardService#registrerPropertyClearingResolver
+  * @methodOf umbraco.services.clipboardService
+  *
+  * @param {string} function A method executed for every property and inner properties copied.
+  *
+  * @description
+  * Executed for all properties including inner properties when performing a copy action.
+  */
+        service.registrerClearPropertyResolver = function (resolver) {
+            clearPropertyResolvers.push(resolver);
+        };
+        /**
+  * @ngdoc method
   * @name umbraco.services.clipboardService#copy
   * @methodOf umbraco.services.clipboardService
   *
@@ -933,13 +960,17 @@
   * @param {string} alias A string defining the alias of the data to store, example: 'product'
   * @param {object} entry A object containing the properties to be saved, this could be the object of a ElementType, ContentNode, ...
   * @param {string} displayLabel (optional) A string swetting the label to display when showing paste entries.
+  * @param {string} displayIcon (optional) A string setting the icon to display when showing paste entries.
+  * @param {string} uniqueKey (optional) A string prodiving an identifier for this entry, existing entries with this key will be removed to ensure that you only have the latest copy of this data.
   *
   * @description
   * Saves a single JS-object with a type and alias to the clipboard.
   */
-        service.copy = function (type, alias, data, displayLabel) {
+        service.copy = function (type, alias, data, displayLabel, displayIcon, uniqueKey, firstLevelClearupMethod) {
             var storage = retriveStorage();
-            var uniqueKey = data.key || data.$$hashKey || console.error('missing unique key for this content');
+            displayLabel = displayLabel || data.name;
+            displayIcon = displayIcon || iconHelper.convertFromLegacyIcon(data.icon);
+            uniqueKey = uniqueKey || data.key || console.error('missing unique key for this content');
             // remove previous copies of this entry:
             storage.entries = storage.entries.filter(function (entry) {
                 return entry.unique !== uniqueKey;
@@ -948,9 +979,9 @@
                 unique: uniqueKey,
                 type: type,
                 alias: alias,
-                data: prepareEntryForStorage(data),
-                label: displayLabel || data.name,
-                icon: iconHelper.convertFromLegacyIcon(data.icon)
+                data: prepareEntryForStorage(data, firstLevelClearupMethod),
+                label: displayLabel,
+                icon: displayIcon
             };
             storage.entries.push(entry);
             if (saveStorage(storage) === true) {
@@ -970,15 +1001,16 @@
   * @param {string} displayLabel A string setting the label to display when showing paste entries.
   * @param {string} displayIcon A string setting the icon to display when showing paste entries.
   * @param {string} uniqueKey A string prodiving an identifier for this entry, existing entries with this key will be removed to ensure that you only have the latest copy of this data.
+  * @param {string} firstLevelClearupMethod A string prodiving an identifier for this entry, existing entries with this key will be removed to ensure that you only have the latest copy of this data.
   *
   * @description
   * Saves a single JS-object with a type and alias to the clipboard.
   */
-        service.copyArray = function (type, aliases, datas, displayLabel, displayIcon, uniqueKey) {
+        service.copyArray = function (type, aliases, datas, displayLabel, displayIcon, uniqueKey, firstLevelClearupMethod) {
             var storage = retriveStorage();
             // Clean up each entry
             var copiedDatas = datas.map(function (data) {
-                return prepareEntryForStorage(data);
+                return prepareEntryForStorage(data, firstLevelClearupMethod);
             });
             // remove previous copies of this entry:
             storage.entries = storage.entries.filter(function (entry) {

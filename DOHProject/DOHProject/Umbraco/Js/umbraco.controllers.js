@@ -20716,8 +20716,59 @@
     }
     angular.module('umbraco').controller('Umbraco.PropertyEditors.MultiUrlPickerController', multiUrlPickerController);
     'use strict';
+    function _typeof(obj) {
+        if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
+            _typeof = function _typeof(obj) {
+                return typeof obj;
+            };
+        } else {
+            _typeof = function _typeof(obj) {
+                return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj;
+            };
+        }
+        return _typeof(obj);
+    }
     (function () {
         'use strict';
+        /**
+   * When performing a copy, we do copy the ElementType Data Model, but each inner Nested Content property is still stored as the Nested Content Model, aka. each property is just storing its value. To handle this we need to ensure we handle both scenarios.
+   */
+        angular.module('umbraco').run([
+            'clipboardService',
+            function (clipboardService) {
+                function clearNestedContentPropertiesForStorage(prop, propClearingMethod) {
+                    // if prop.editor is "Umbraco.NestedContent"
+                    if (_typeof(prop) === 'object' && prop.editor === 'Umbraco.NestedContent') {
+                        var value = prop.value;
+                        for (var i = 0; i < value.length; i++) {
+                            var obj = value[i];
+                            // remove the key
+                            delete obj.key;
+                            // Loop through all inner properties:
+                            for (var k in obj) {
+                                propClearingMethod(obj[k]);
+                            }
+                        }
+                    }
+                }
+                clipboardService.registrerClearPropertyResolver(clearNestedContentPropertiesForStorage);
+                function clearInnerNestedContentPropertiesForStorage(prop, propClearingMethod) {
+                    // if we got an array, and it has a entry with ncContentTypeAlias this meants that we are dealing with a NestedContent property inside a NestedContent property.
+                    if (Array.isArray(prop) && prop.length > 0 && prop[0].ncContentTypeAlias !== undefined) {
+                        for (var i = 0; i < prop.length; i++) {
+                            var obj = prop[i];
+                            // remove the key
+                            delete obj.key;
+                            // Loop through all inner properties:
+                            for (var k in obj) {
+                                propClearingMethod(obj[k]);
+                            }
+                        }
+                    }
+                }
+                clipboardService.registrerClearPropertyResolver(clearInnerNestedContentPropertiesForStorage);
+            }
+        ]);
         angular.module('umbraco').component('nestedContentPropertyEditor', {
             template: ' <div id="umb-nested-content--{{model.id}}" class="umb-nested-content" ng-class="{\'umb-nested-content--narrow\':!vm.wideMode, \'umb-nested-content--wide\':vm.wideMode}"> <umb-load-indicator class="mt2" ng-if="!vm.inited"></umb-load-indicator> <ng-form name="nestedContentForm" ng-show="vm.inited"> <div class="umb-nested-content__items" ng-hide="vm.nodes.length === 0" ui-sortable="vm.sortableOptions" ng-model="vm.nodes"> <div class="umb-nested-content__item" ng-repeat="node in vm.nodes" ng-class="{ \'umb-nested-content__item--active\' : vm.currentNode.key === node.key, \'umb-nested-content__item--single\' : vm.singleMode }"> <div class="umb-nested-content__header-bar" ng-click="vm.editNode($index)" ng-hide="vm.singleMode" umb-auto-focus="{{vm.currentNode.key === node.key ? \'true\' : \'false\'}}"> <div class="umb-nested-content__heading"><i ng-if="vm.showIcons" class="icon" ng-class="vm.getIcon($index)"></i><span class="umb-nested-content__item-name" ng-class="{\'--has-icon\': vm.showIcons}" ng-bind="vm.getName($index)"></span></div> <div class="umb-nested-content__icons"> <button type="button" class="umb-nested-content__icon umb-nested-content__icon--copy" title="{{vm.labels.copy_icon_title}}" ng-click="vm.clickCopy($event, node);" ng-if="vm.showCopy"> <i class="icon icon-documents" aria-hidden="true"></i> <span class="sr-only">{{vm.labels.copy_icon_title}}</span> </button> <button type="button" class="umb-nested-content__icon umb-nested-content__icon--delete" localize="title" title="general_delete" ng-class="{ \'umb-nested-content__icon--disabled\': !vm.canDeleteNode($index) }" ng-click="vm.requestDeleteNode($index); $event.stopPropagation();"> <i class="icon icon-trash" aria-hidden="true"></i> <span class="sr-only"> <localize key="general_delete">Delete</localize> </span> </button> </div> </div> <div class="umb-nested-content__content" ng-if="vm.currentNode.key === node.key && !vm.sorting"> <umb-nested-content-editor ng-model="node" tab-alias="ncTabAlias"> </umb-nested-content-editor></div> </div> </div> <div ng-hide="vm.hasContentTypes"> <div class="umb-nested-content__help-text"> <localize key="content_nestedContentNoContentTypes"></localize> </div> </div> <div class="umb-nested-content__footer-bar" ng-hide="!vm.inited || vm.hasContentTypes === false || vm.singleMode === true"> <button type="button" class="btn-reset umb-nested-content__add-content umb-focus" ng-class="{ \'--disabled\': (!vm.scaffolds.length || vm.nodes.length >= vm.maxItems) }" ng-click="vm.openNodeTypePicker($event)" prevent-default> <localize key="grid_addElement"></localize> </button> </div>  <input type="hidden" name="minCount" ng-model="vm.nodes"> <input type="hidden" name="maxCount" ng-model="vm.nodes"> <div ng-messages="nestedContentForm.minCount.$error" show-validation-on-submit> <div class="help text-error" ng-message="minCount"> <localize key="validation_entriesShort" tokens="[vm.minItems, vm.minItems - vm.nodes.length]" watch-tokens="true">Minimum %0% entries, needs <strong>%1%</strong> more.</localize> </div> </div> <div ng-if="nestedContentForm.minCount.$error === true || vm.nodes.length > vm.maxItems"> <div class="help text-error"> <localize key="validation_entriesExceed" tokens="[vm.maxItems, vm.nodes.length - vm.maxItems]" watch-tokens="true">Maximum %0% entries, <strong>%1%</strong> too many.</localize> </div> </div> </ng-form> <umb-overlay ng-if="vm.overlayMenu.show" position="target" size="vm.overlayMenu.size" view="vm.overlayMenu.view" model="vm.overlayMenu"> </umb-overlay> </div> ',
             controller: NestedContentController,
@@ -20727,7 +20778,7 @@
                 umbVariantContent: '?^^umbVariantContent'
             }
         });
-        function NestedContentController($scope, $interpolate, $filter, $timeout, contentResource, localizationService, iconHelper, clipboardService, eventsService, overlayService, $routeParams, editorState) {
+        function NestedContentController($scope, $interpolate, $filter, $timeout, contentResource, localizationService, iconHelper, clipboardService, eventsService, overlayService) {
             var vm = this;
             var model = $scope.$parent.$parent.model;
             var contentTypeAliases = [];
@@ -20784,7 +20835,7 @@
                     model.label,
                     nodeName
                 ]).then(function (data) {
-                    clipboardService.copyArray('elementTypeArray', aliases, vm.nodes, data, 'icon-thumbnail-list', model.id);
+                    clipboardService.copyArray('elementTypeArray', aliases, vm.nodes, data, 'icon-thumbnail-list', model.id, clearNodeForCopy);
                 });
             };
             var copyAllEntriesAction = {
@@ -20902,13 +20953,16 @@
                         icon: entry.icon
                     });
                 });
-                vm.overlayMenu.title = vm.overlayMenu.pasteItems.length > 0 ? labels.grid_addElement : labels.content_createEmpty;
+                vm.overlayMenu.title = labels.grid_addElement;
+                vm.overlayMenu.hideHeader = vm.overlayMenu.pasteItems.length > 0;
                 vm.overlayMenu.clickClearPaste = function ($event) {
                     $event.stopPropagation();
                     $event.preventDefault();
                     clipboardService.clearEntriesOfType('elementType', contentTypeAliases);
                     clipboardService.clearEntriesOfType('elementTypeArray', contentTypeAliases);
-                    vm.overlayMenu.pasteItems = [];    // This dialog is not connected via the clipboardService events, so we need to update manually.
+                    vm.overlayMenu.pasteItems = [];
+                    // This dialog is not connected via the clipboardService events, so we need to update manually.
+                    vm.overlayMenu.hideHeader = false;
                 };
                 if (vm.overlayMenu.availableItems.length === 1 && vm.overlayMenu.pasteItems.length === 0) {
                     // only one scaffold type - no need to display the picker
@@ -21055,11 +21109,15 @@
                     return contentType.ncAlias === alias;
                 });
             }
+            function clearNodeForCopy(clonedData) {
+                delete clonedData.key;
+                delete clonedData.$$hashKey;
+            }
             vm.showCopy = clipboardService.isSupported();
             vm.showPaste = false;
             vm.clickCopy = function ($event, node) {
                 syncCurrentNode();
-                clipboardService.copy('elementType', node.contentTypeAlias, node);
+                clipboardService.copy('elementType', node.contentTypeAlias, node, null, null, null, clearNodeForCopy);
                 $event.stopPropagation();
             };
             function pasteFromClipboard(newNode) {
@@ -21142,10 +21200,12 @@
                         }
                     }
                     // Enforce min items if we only have one scaffold type
+                    var modelWasChanged = false;
                     if (vm.nodes.length < vm.minItems && vm.scaffolds.length === 1) {
                         for (var i = vm.nodes.length; i < model.config.minItems; i++) {
                             addNode(vm.scaffolds[0].contentTypeAlias);
                         }
+                        modelWasChanged = true;
                     }
                     // If there is only one item, set it as current node
                     if (vm.singleMode || vm.nodes.length === 1 && vm.maxItems === 1) {
@@ -21153,6 +21213,9 @@
                     }
                     validate();
                     vm.inited = true;
+                    if (modelWasChanged) {
+                        updateModel();
+                    }
                     updatePropertyActionStates();
                     checkAbilityToPasteContent();
                 }
@@ -21217,8 +21280,8 @@
                 updatePropertyActionStates();
             }
             function updatePropertyActionStates() {
-                copyAllEntriesAction.isDisabled = !model.value || model.value.length === 0;
-                removeAllEntriesAction.isDisabled = !model.value || model.value.length === 0;
+                copyAllEntriesAction.isDisabled = !model.value || !model.value.length;
+                removeAllEntriesAction.isDisabled = copyAllEntriesAction.isDisabled;
             }
             var propertyActions = [
                 copyAllEntriesAction,
