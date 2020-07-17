@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Person xmlns="http://hl7.org/fhir"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../fhir-all-xsd/fhir-all.xsd">
+  <id value="A10101010">
+    <!--{SID}身份證字號-->
+  </id>
+  <identifier>
+    <use value="official"></use>
+    <type>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/identifier-use">
+          <!--此編碼定義-->
+        </system>
+        <code value="SID"></code>
+        <display value="身份證字號"></display>
+      </coding>
+    </type>
+    <system value="2.16.886.101.20003.20001.20032">
+      <!--行政院內政部民政司OID-->
+    </system>
+    <value value="A111111111">
+      <!--{SID}身份證字號-->
+    </value>
+  </identifier>
+    <!--中文姓名 -->
+</Person>
+
+
+
+
+
+

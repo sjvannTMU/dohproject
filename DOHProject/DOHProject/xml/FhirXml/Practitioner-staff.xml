@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Practitioner xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../fhir-all-xsd/fhir-all.xsd">
+	<id value="A111111111">
+		<!--{SID}身份證字號-->
+	</id>
+	<!--定義身份證字號-->
+	<identifier>
+
+		<use value="official"></use>
+		<type>
+			<coding>
+				<system value="http://hl7.org/fhir/ValueSet/identifier-use">
+					<!--此編碼定義-->
+				</system>
+				<code value="SID"></code>
+				<display value="身份證字號"></display>
+			</coding>
+		</type>
+		<system value="2.16.886.101.20003.20001.20032">
+			<!--行政院內政部民政司OID-->
+		</system>
+		<value value="A111111111">
+			<!--{SID}身份證字號-->
+		</value>
+	</identifier>
+	<active value="true">
+		<!--{IsActive}執業狀態-->
+	</active>
+	<!--中文姓名 D003人員模組-->
+	<name>
+		<use value="usual">
+			<!--聯絡人資料-->
+		</use>
+		<text value="某聯絡">
+			<!--{FullName}姓名：-->
+		</text>
+		<!--若資料源姓、名分別存放時，才須使用下列區塊-->
+		<family value="某">
+			<!--{FamilyName}姓氏-->
+		</family>
+		<given value="聯絡">
+			<!--{GivenName}名字-->
+		</given>
+	</name>
+	<!--英文姓名 D003人員模組-->
+	<name>
+		<use value="usual">
+			<!--聯絡人資料-->
+		</use>
+		<text value="ABCD">
+			<!--{FullName}姓名：-->
+		</text>
+		<family value="AB">
+			<!--{FamilyName}姓氏-->
+		</family>
+		<given value="CD">
+			<!--{GivenName}名字-->
+		</given>
+	</name>
+
+	<!--聯絡方式 D002通訊模組-->
+	<telecom>
+		<system value="phone">
+			<!--定義此區塊為電話-->
+		</system>
+		<value value="886-02-1234567890#1111">
+			<!--{CountryCode}-{PhoneAreaCode}-{TelephoneNumber}#{Extension}-->
+		</value>
+	</telecom>
+	<!--住家地址 D001地址模組-->
+	<address>
+		<use value="home">
+			<!--定義住家地址：T0007-->
+		</use>
+		<type value="physical">
+			<!--此為實體地址-->
+		</type>
+		<line value="某某路100號">
+			<!--{StreeAddress}地址-街道名稱-->
+		</line>
+		<city value="台北市">
+			<!--{AreaName}縣市名稱-->
+		</city>
+		<district value="某某區">
+			<!--{ZipName}鄉鎮市區名稱-->
+		</district>
+	</address>
+	<!--戶籍地址 D001地址模組-->
+	<address>
+		<use value="br">
+			<!--定義戶籍地址：T0007-->
+		</use>
+		<type value="physical">
+			<!--此為實體地址-->
+		</type>
+		<line value="某某路100號">
+			<!--{StreeAddress}地址-街道名稱-->
+		</line>
+		<city value="台北市">
+			<!--{AreaName}縣市名稱-->
+		</city>
+		<district value="某某區">
+			<!--{ZipName}鄉鎮市區名稱-->
+		</district>
+	</address>
+	<!--辦公室地址 D001地址模組-->
+	<address>
+		<use value="work">
+			<!--定義辦公室地址：T0007-->
+		</use>
+		<type value="physical">
+			<!--此為實體地址-->
+		</type>
+		<line value="某某路100號">
+			<!--{StreeAddress}地址-街道名稱-->
+		</line>
+		<city value="台北市">
+			<!--{AreaName}縣市名稱-->
+		</city>
+		<district value="某某區">
+			<!--{ZipName}鄉鎮市區名稱-->
+		</district>
+	</address>
+	<gender value="male"><!--{Gender}性別：T0009--></gender>
+	<birthDate value="1905-08-23"><!--{Birthday}出生年月日--></birthDate>
+	
+	<qualification>
+		<!-- 0..* Certification, licenses, or training pertaining to the provision of care -->
+		<identifier>
+			<!-- 0..* Identifier An identifier for this qualification for the practitioner -->
+		</identifier>
+		<code>
+			<!-- 1..1 CodeableConcept Coded representation of the qualification -->
+		</code>
+		<period>
+			<!-- 0..1 Period Period during which the qualification is valid -->
+		</period>
+		<issuer>
+			<!-- 0..1 Reference(Organization) Organization that regulates and issues the qualification -->
+		</issuer>
+	</qualification>
+</Practitioner>

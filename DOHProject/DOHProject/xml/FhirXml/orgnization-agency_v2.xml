@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Z
+-->
+<Organization xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../fhir-all-xsd/fhir-all.xsd">
+  <id value="1111111119">
+    <!--{AgencyID}醫事機構代碼-->
+  </id>
+  <text>
+    <status value="additional" />
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      {AgencyName} - {EvaluationType}
+      <br />
+      {D001地址模組}
+      <br />
+      {D002通訊模組}
+    </div>
+  </text>
+  <!--定義醫事機構代碼-->
+  <identifier>
+    <use value="official"/>
+    <type>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/identifier-type">
+          <!--定義此辨識碼型態-可擴充-->
+        </system>
+        <code value="MID">
+          <!--定義此處為醫事機構代碼-->
+        </code>
+        <display value="醫事機構代碼"/>
+      </coding>
+      <text value="1111111119">
+        <!--{AgencyID}醫事機構代碼-->
+      </text>
+    </type>
+  </identifier>
+  <!--定義機構所在地-->
+  <identifier>
+    <use value="official"/>
+    <type>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/identifier-type">
+          <!--定義此辨識碼型態-可擴充-->
+        </system>
+        <code value="AL">
+          <!--定義此處為機構所在地-->
+        </code>
+        <display value="機構所在地"/>
+      </coding>
+    </type>
+    <system value="http://donahc.mohw.gov.tw/T0004"/>
+    <value value="A">
+      <!--{AgencyLocation}機構所在地-->
+    </value>
+  </identifier>
+  <!--定義機構經營型態-->
+  <identifier>
+    <use value="official"/>
+    <type>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/identifier-type">
+          <!--定義此辨識碼型態-可擴充-->
+        </system>
+        <code value="BT">
+          <!--定義此處為機構經營型態-->
+        </code>
+        <display value="經營型態"/>
+      </coding>
+    </type>
+    <system value="http://donahc.mohw.gov.tw/T0001"/>
+    <value value="1">
+      <!--{AgencyType}經營型態-->
+    </value>
+  </identifier>
+  <!--定義機構權屬別-->
+  <identifier>
+    <use value="official"/>
+    <type>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/identifier-type">
+          <!--定義此辨識碼型態-可擴充-->
+        </system>
+        <code value="AT">
+          <!--定義此處為機構權屬別-->
+        </code>
+        <display value="機構權屬別"/>
+      </coding>
+    </type>
+    <system value="http://donahc.mohw.gov.tw/T0002"/>
+    <value value="1">
+      <!--{AgencyAuthor}機構權屬別-->
+    </value>
+  </identifier>
+  <!--定義機構開業狀態-->
+  <active value="true">
+    <!--{AgencyStatus}開業狀態-未開業為false，已開業為true-->
+  </active>
+  <!--用來定義此機構為護產機構-->
+  <type>
+    <coding>
+      <system value="http://hl7.org/fhir/ValueSet/organization-type">
+        <!--定義組織類別-->
+      </system>
+      <code value="prov">
+        <!--定義為健康照護提供者-->
+      </code>
+      <display value="Healthcare Provider"></display>
+    </coding>
+    <text value="護產機構"></text>
+  </type>
+  <!--進一步定義此機構型態-評鑑類別-->
+  <type>
+    <coding>
+      <system value="http://donahc.mohw.ogv.tw/T0003"></system>
+      <code value="1">
+        <!--{EvaluateType}評鑑類別-D009評鑑模組-->
+      </code>
+      <display value="一般護理之家"></display>
+    </coding>
+  </type>
+  <name value="某某護理之家">
+    <!--{AgencyName}機構名稱-D004機構模組-->
+  </name>
+  <alias value="某某">
+    <!--{AgencyAlias}機構簡稱-D004機構模組-->
+  </alias>
+  <!--D002通訊模組-->
+  <telecom>
+    <system value="phone">
+      <!--定義此區塊為電話-->
+    </system>
+    <value value="886-02-1234567890#1111">
+      <!--{CountryCode}-{PhoneAreaCode}-{TelephoneNumber}#{Extension}-->
+    </value>
+  </telecom>
+  <telecom>
+    <system value="url">
+      <!--定義此區塊為機構網址-->
+    </system>
+    <value value="http://wwww.agency.org.tw">
+      <!--{WebSite}網址-->
+    </value>
+  </telecom>
+  <!--D001地址模組-->
+  <address>
+    <use value="work">
+      <!--定義機構地址-->
+    </use>
+    <type value="physical">
+      <!--此為實體地址-->
+    </type>
+    <line value="某某路100號">
+      <!--{StreeAddress}地址-街道名稱-->
+    </line>
+    <city value="台北市">
+      <!--{AreaName}縣市名稱-->
+    </city>
+    <district value="某某區">
+      <!--{ZipName}鄉鎮市區名稱-->
+    </district>
+  </address>
+  <!--定義院區資料-->
+  <partOf>
+    <reference value="1111111111">
+      <!--提供總院區的FHIR ID。目前定義為醫事機構代碼-->
+    </reference>
+  </partOf>
+  <!--聯絡人：M012聯絡人模組-->
+  <contact>
+    <purpose>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/contactentity-type"></system>
+        <code value="HR">
+          <!--定義此區塊為聯絡人-->
+        </code>
+        <display value="聯絡人"></display>
+      </coding>
+    </purpose>
+    <!--D003人員模組-->
+    <name>
+      <use value="usual">
+        <!--聯絡人資料-->
+      </use>
+      <text value="某聯絡">
+        <!--{FullName}姓名：-->
+      </text>
+      <!--若資料源姓、名分別存放時，才須使用下列區塊-->
+      <family value="某">
+        <!--{FamilyName}姓氏-->
+      </family>
+      <given value="聯絡">
+        <!--{GivenName}名字-->
+      </given>
+    </name>
+    <!--D002通訊模組-->
+    <telecom>
+      <system value="phone">
+        <!--定義此區塊為電話-->
+      </system>
+      <value value="886-02-1234567890#1111">
+        <!--{CountryCode}-{PhoneAreaCode}-{TelephoneNumber}#{Extension}-->
+      </value>
+    </telecom>
+    <telecom>
+      <system value="email">
+        <!--定義此區塊為電子郵件-->
+      </system>
+      <value value="aaaa@doh.gov.tw">
+        <!--{Email}電子郵件信箱-->
+      </value>
+    </telecom>
+    <telecom>
+      <system value="other">
+        <!--定義此區塊為手機-->
+      </system>
+      <value value="0900000000">
+        <!--{MobileNumber}手機號碼-->
+      </value>
+    </telecom>
+    <!--D001地址模組-->
+    <address>
+      <use value="home">
+        <!--定義聯絡人地址-->
+      </use>
+      <type value="physical">
+        <!--此為實體地址-->
+      </type>
+      <line value="某某路100號">
+        <!--{StreeAddress}地址-街道名稱-->
+      </line>
+      <city value="台北市">
+        <!--{AreaName}縣市名稱-->
+      </city>
+      <district value="某某區">
+        <!--{ZipName}鄉鎮市區名稱-->
+      </district>
+    </address>
+  </contact>
+  <!--負責人：M013負責人模組-->
+  <contact>
+    <extension url="http://donahc.mohw.gov.tw/extension/AdministratorReference">
+      <valueReference>
+        <reference value="111111111"><!--以參照方式取得此負責人詳細資料--></reference>
+      </valueReference>
+    </extension>
+    <purpose>
+      <coding>
+        <system value="http://hl7.org/fhir/ValueSet/contactentity-type"></system>
+        <code value="ADMIN">
+          <!--定義此區塊為負責人-->
+        </code>
+        <display value="負責人"></display>
+      </coding>
+    </purpose>
+    <!--D003人員模組-->
+    <name>
+      <use value="usual">
+        <!--聯絡人資料-->
+      </use>
+      <text value="某負責">
+        <!--{FullName}姓名：-->
+      </text>
+      <!--若資料源姓、名分別存放時，才須使用下列區塊-->
+      <family value="某">
+        <!--{FamilyName}姓氏-->
+      </family>
+      <given value="負責">
+        <!--{GivenName}名字-->
+      </given>
+    </name>
+    <!--D002通訊模組-->
+    <telecom>
+      <system value="phone">
+        <!--定義此區塊為電話-->
+      </system>
+      <value value="886-02-1234567890#1111">
+        <!--{CountryCode}-{PhoneAreaCode}-{TelephoneNumber}#{Extension}-->
+      </value>
+    </telecom>
+    <telecom>
+      <system value="email">
+        <!--定義此區塊為電子郵件-->
+      </system>
+      <value value="aaaa@doh.gov.tw">
+        <!--{Email}電子郵件信箱-->
+      </value>
+    </telecom>
+    <telecom>
+      <system value="other">
+        <!--定義此區塊為手機-->
+      </system>
+      <value value="0900000000">
+        <!--{MobileNumber}手機號碼-->
+      </value>
+    </telecom>
+    <!--D001地址模組-->
+    <address>
+      <use value="home">
+        <!--定義聯絡人地址-->
+      </use>
+      <type value="physical">
+        <!--此為實體地址-->
+      </type>
+      <line value="某某路100號">
+        <!--{StreeAddress}地址-街道名稱-->
+      </line>
+      <city value="台北市">
+        <!--{AreaName}縣市名稱-->
+      </city>
+      <district value="某某區">
+        <!--{ZipName}鄉鎮市區名稱-->
+      </district>
+    </address>
+  </contact>
+</Organization>

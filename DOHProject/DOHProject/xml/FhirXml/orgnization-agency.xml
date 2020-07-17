@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Organization xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../fhir-all-xsd/fhir-all.xsd">
+  <id value="1111111111">
+    <!--[AgencyID 醫事機構代碼]-->
+  </id>
+  <text>
+    <status value="additional" />
+    <div xmlns="http://www.w3.org/1999/xhtml">
+		{AgencyName} - {EvaluationType}
+		<br />
+		{D001地址模組}
+		<br />
+		{D002通訊模組}
+	</div>
+  </text>
+  <identifier>
+    <use value="official" />
+  </identifier>
+</Organization>

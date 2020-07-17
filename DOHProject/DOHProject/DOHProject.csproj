@@ -2065,6 +2065,11 @@
     <Content Include="Umbraco\Views\users\views\users\users.html" />
     <Content Include="Umbraco\Views\users\views\user\details.html" />
     <Content Include="Web.config" />
+    <Content Include="xml\fhir-all-xsd\orgnization-agency.xml" />
+    <Content Include="xml\FhirXml\orgnization-agency.xml" />
+    <Content Include="xml\FhirXml\orgnization-agency_v2.xml" />
+    <Content Include="xml\FhirXml\person-committee.xml" />
+    <Content Include="xml\執業人員.xml" />
     <Content Include="xml\委員管理.xml" />
     <Content Include="xml\機構管理.xml" />
   </ItemGroup>
@@ -2155,6 +2160,7 @@
     <Compile Include="Models\Committee\EvaluationExperience.cs" />
     <Compile Include="Models\Composition\EvaluationGroup.cs" />
     <Compile Include="Models\Composition\ExperimentGroup.cs" />
+    <Compile Include="Models\DataType\TrainingData.cs" />
     <Compile Include="Models\IElementMap.cs" />
     <Compile Include="Models\Person\PersonCommittee.cs" />
     <Compile Include="Models\Person\PersonContact.cs" />
@@ -2568,6 +2574,609 @@
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="xml\fhir-all-xsd\account.sch" />
+    <None Include="xml\fhir-all-xsd\account.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\activitydefinition.sch" />
+    <None Include="xml\fhir-all-xsd\activitydefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\adverseevent.sch" />
+    <None Include="xml\fhir-all-xsd\adverseevent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\allergyintolerance.sch" />
+    <None Include="xml\fhir-all-xsd\allergyintolerance.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\appointment.sch" />
+    <None Include="xml\fhir-all-xsd\appointment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\appointmentresponse.sch" />
+    <None Include="xml\fhir-all-xsd\appointmentresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\auditevent.sch" />
+    <None Include="xml\fhir-all-xsd\auditevent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\basic.sch" />
+    <None Include="xml\fhir-all-xsd\basic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\binary.sch" />
+    <None Include="xml\fhir-all-xsd\binary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\biologicallyderivedproduct.sch" />
+    <None Include="xml\fhir-all-xsd\biologicallyderivedproduct.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\bodystructure.sch" />
+    <None Include="xml\fhir-all-xsd\bodystructure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\bundle.sch" />
+    <None Include="xml\fhir-all-xsd\bundle.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\capabilitystatement.sch" />
+    <None Include="xml\fhir-all-xsd\capabilitystatement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\careplan.sch" />
+    <None Include="xml\fhir-all-xsd\careplan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\careteam.sch" />
+    <None Include="xml\fhir-all-xsd\careteam.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\catalogentry.sch" />
+    <None Include="xml\fhir-all-xsd\catalogentry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\chargeitem.sch" />
+    <None Include="xml\fhir-all-xsd\chargeitem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\chargeitemdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\chargeitemdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\claim.sch" />
+    <None Include="xml\fhir-all-xsd\claim.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\claimresponse.sch" />
+    <None Include="xml\fhir-all-xsd\claimresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\clinicalimpression.sch" />
+    <None Include="xml\fhir-all-xsd\clinicalimpression.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\codesystem.sch" />
+    <None Include="xml\fhir-all-xsd\codesystem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\communication.sch" />
+    <None Include="xml\fhir-all-xsd\communication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\communicationrequest.sch" />
+    <None Include="xml\fhir-all-xsd\communicationrequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\compartmentdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\compartmentdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\composition.sch" />
+    <None Include="xml\fhir-all-xsd\composition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\conceptmap.sch" />
+    <None Include="xml\fhir-all-xsd\conceptmap.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\condition.sch" />
+    <None Include="xml\fhir-all-xsd\condition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\consent.sch" />
+    <None Include="xml\fhir-all-xsd\consent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\contract.sch" />
+    <None Include="xml\fhir-all-xsd\contract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\coverage.sch" />
+    <None Include="xml\fhir-all-xsd\coverage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\coverageeligibilityrequest.sch" />
+    <None Include="xml\fhir-all-xsd\coverageeligibilityrequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\coverageeligibilityresponse.sch" />
+    <None Include="xml\fhir-all-xsd\coverageeligibilityresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\detectedissue.sch" />
+    <None Include="xml\fhir-all-xsd\detectedissue.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\device.sch" />
+    <None Include="xml\fhir-all-xsd\device.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\devicedefinition.sch" />
+    <None Include="xml\fhir-all-xsd\devicedefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\devicemetric.sch" />
+    <None Include="xml\fhir-all-xsd\devicemetric.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\devicerequest.sch" />
+    <None Include="xml\fhir-all-xsd\devicerequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\deviceusestatement.sch" />
+    <None Include="xml\fhir-all-xsd\deviceusestatement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\diagnosticreport.sch" />
+    <None Include="xml\fhir-all-xsd\diagnosticreport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\documentmanifest.sch" />
+    <None Include="xml\fhir-all-xsd\documentmanifest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\documentreference.sch" />
+    <None Include="xml\fhir-all-xsd\documentreference.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\effectevidencesynthesis.sch" />
+    <None Include="xml\fhir-all-xsd\effectevidencesynthesis.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\encounter.sch" />
+    <None Include="xml\fhir-all-xsd\encounter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\endpoint.sch" />
+    <None Include="xml\fhir-all-xsd\endpoint.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\enrollmentrequest.sch" />
+    <None Include="xml\fhir-all-xsd\enrollmentrequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\enrollmentresponse.sch" />
+    <None Include="xml\fhir-all-xsd\enrollmentresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\episodeofcare.sch" />
+    <None Include="xml\fhir-all-xsd\episodeofcare.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\eventdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\eventdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\evidence.sch" />
+    <None Include="xml\fhir-all-xsd\evidence.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\evidencevariable.sch" />
+    <None Include="xml\fhir-all-xsd\evidencevariable.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\examplescenario.sch" />
+    <None Include="xml\fhir-all-xsd\examplescenario.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\explanationofbenefit.sch" />
+    <None Include="xml\fhir-all-xsd\explanationofbenefit.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\familymemberhistory.sch" />
+    <None Include="xml\fhir-all-xsd\familymemberhistory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\fhir-all-xsd\fhir-all.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\fhir-all-xsd\fhir-base.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\fhir-invariants.sch" />
+    <None Include="xml\fhir-all-xsd\fhir-single.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\fhir-all-xsd\fhir-xhtml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\flag.sch" />
+    <None Include="xml\fhir-all-xsd\flag.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\goal.sch" />
+    <None Include="xml\fhir-all-xsd\goal.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\graphdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\graphdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\group.sch" />
+    <None Include="xml\fhir-all-xsd\group.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\guidanceresponse.sch" />
+    <None Include="xml\fhir-all-xsd\guidanceresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\healthcareservice.sch" />
+    <None Include="xml\fhir-all-xsd\healthcareservice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\imagingstudy.sch" />
+    <None Include="xml\fhir-all-xsd\imagingstudy.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\immunization.sch" />
+    <None Include="xml\fhir-all-xsd\immunization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\immunizationevaluation.sch" />
+    <None Include="xml\fhir-all-xsd\immunizationevaluation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\immunizationrecommendation.sch" />
+    <None Include="xml\fhir-all-xsd\immunizationrecommendation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\implementationguide.sch" />
+    <None Include="xml\fhir-all-xsd\implementationguide.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\insuranceplan.sch" />
+    <None Include="xml\fhir-all-xsd\insuranceplan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\invoice.sch" />
+    <None Include="xml\fhir-all-xsd\invoice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\library.sch" />
+    <None Include="xml\fhir-all-xsd\library.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\linkage.sch" />
+    <None Include="xml\fhir-all-xsd\linkage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\list.sch" />
+    <None Include="xml\fhir-all-xsd\list.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\location.sch" />
+    <None Include="xml\fhir-all-xsd\location.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\measure.sch" />
+    <None Include="xml\fhir-all-xsd\measure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\measurereport.sch" />
+    <None Include="xml\fhir-all-xsd\measurereport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\media.sch" />
+    <None Include="xml\fhir-all-xsd\media.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medication.sch" />
+    <None Include="xml\fhir-all-xsd\medication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicationadministration.sch" />
+    <None Include="xml\fhir-all-xsd\medicationadministration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicationdispense.sch" />
+    <None Include="xml\fhir-all-xsd\medicationdispense.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicationknowledge.sch" />
+    <None Include="xml\fhir-all-xsd\medicationknowledge.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicationrequest.sch" />
+    <None Include="xml\fhir-all-xsd\medicationrequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicationstatement.sch" />
+    <None Include="xml\fhir-all-xsd\medicationstatement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproduct.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproduct.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductauthorization.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductauthorization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductcontraindication.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductcontraindication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductindication.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductindication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductingredient.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductingredient.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductinteraction.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductinteraction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductmanufactured.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductmanufactured.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductpackaged.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductpackaged.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductpharmaceutical.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductpharmaceutical.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\medicinalproductundesirableeffect.sch" />
+    <None Include="xml\fhir-all-xsd\medicinalproductundesirableeffect.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\messagedefinition.sch" />
+    <None Include="xml\fhir-all-xsd\messagedefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\messageheader.sch" />
+    <None Include="xml\fhir-all-xsd\messageheader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\molecularsequence.sch" />
+    <None Include="xml\fhir-all-xsd\molecularsequence.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\namingsystem.sch" />
+    <None Include="xml\fhir-all-xsd\namingsystem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\nutritionorder.sch" />
+    <None Include="xml\fhir-all-xsd\nutritionorder.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\observation.sch" />
+    <None Include="xml\fhir-all-xsd\observation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\observationdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\observationdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\operationdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\operationdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\operationoutcome.sch" />
+    <None Include="xml\fhir-all-xsd\operationoutcome.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\organization.sch" />
+    <None Include="xml\fhir-all-xsd\organization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\organizationaffiliation.sch" />
+    <None Include="xml\fhir-all-xsd\organizationaffiliation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\parameters.sch" />
+    <None Include="xml\fhir-all-xsd\parameters.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\patient.sch" />
+    <None Include="xml\fhir-all-xsd\patient.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\paymentnotice.sch" />
+    <None Include="xml\fhir-all-xsd\paymentnotice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\paymentreconciliation.sch" />
+    <None Include="xml\fhir-all-xsd\paymentreconciliation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\person.sch" />
+    <None Include="xml\fhir-all-xsd\person.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\plandefinition.sch" />
+    <None Include="xml\fhir-all-xsd\plandefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\practitioner.sch" />
+    <None Include="xml\fhir-all-xsd\practitioner.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\practitionerrole.sch" />
+    <None Include="xml\fhir-all-xsd\practitionerrole.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\procedure.sch" />
+    <None Include="xml\fhir-all-xsd\procedure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\provenance.sch" />
+    <None Include="xml\fhir-all-xsd\provenance.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\questionnaire.sch" />
+    <None Include="xml\fhir-all-xsd\questionnaire.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\questionnaireresponse.sch" />
+    <None Include="xml\fhir-all-xsd\questionnaireresponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\relatedperson.sch" />
+    <None Include="xml\fhir-all-xsd\relatedperson.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\requestgroup.sch" />
+    <None Include="xml\fhir-all-xsd\requestgroup.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\researchdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\researchdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\researchelementdefinition.sch" />
+    <None Include="xml\fhir-all-xsd\researchelementdefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\researchstudy.sch" />
+    <None Include="xml\fhir-all-xsd\researchstudy.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\researchsubject.sch" />
+    <None Include="xml\fhir-all-xsd\researchsubject.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\riskassessment.sch" />
+    <None Include="xml\fhir-all-xsd\riskassessment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\riskevidencesynthesis.sch" />
+    <None Include="xml\fhir-all-xsd\riskevidencesynthesis.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\schedule.sch" />
+    <None Include="xml\fhir-all-xsd\schedule.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\searchparameter.sch" />
+    <None Include="xml\fhir-all-xsd\searchparameter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\servicerequest.sch" />
+    <None Include="xml\fhir-all-xsd\servicerequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\slot.sch" />
+    <None Include="xml\fhir-all-xsd\slot.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\specimen.sch" />
+    <None Include="xml\fhir-all-xsd\specimen.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\specimendefinition.sch" />
+    <None Include="xml\fhir-all-xsd\specimendefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\structuredefinition.sch" />
+    <None Include="xml\fhir-all-xsd\structuredefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\structuremap.sch" />
+    <None Include="xml\fhir-all-xsd\structuremap.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\subscription.sch" />
+    <None Include="xml\fhir-all-xsd\subscription.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substance.sch" />
+    <None Include="xml\fhir-all-xsd\substance.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substancenucleicacid.sch" />
+    <None Include="xml\fhir-all-xsd\substancenucleicacid.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substancepolymer.sch" />
+    <None Include="xml\fhir-all-xsd\substancepolymer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substanceprotein.sch" />
+    <None Include="xml\fhir-all-xsd\substanceprotein.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substancereferenceinformation.sch" />
+    <None Include="xml\fhir-all-xsd\substancereferenceinformation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substancesourcematerial.sch" />
+    <None Include="xml\fhir-all-xsd\substancesourcematerial.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\substancespecification.sch" />
+    <None Include="xml\fhir-all-xsd\substancespecification.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\supplydelivery.sch" />
+    <None Include="xml\fhir-all-xsd\supplydelivery.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\supplyrequest.sch" />
+    <None Include="xml\fhir-all-xsd\supplyrequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\task.sch" />
+    <None Include="xml\fhir-all-xsd\task.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\terminologycapabilities.sch" />
+    <None Include="xml\fhir-all-xsd\terminologycapabilities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\testreport.sch" />
+    <None Include="xml\fhir-all-xsd\testreport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\testscript.sch" />
+    <None Include="xml\fhir-all-xsd\testscript.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\valueset.sch" />
+    <None Include="xml\fhir-all-xsd\valueset.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\verificationresult.sch" />
+    <None Include="xml\fhir-all-xsd\verificationresult.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="xml\fhir-all-xsd\visionprescription.sch" />
+    <None Include="xml\fhir-all-xsd\visionprescription.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\fhir-all-xsd\xml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\fhir-all-xsd\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
