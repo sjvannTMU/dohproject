@@ -1,15 +1,19 @@
 ﻿using Swashbuckle.Application;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 using Umbraco.Core.Composing;
 
 namespace DOHProject.App_Start
 {
+    /// <summary>
+    /// Swagger產生器
+    /// </summary>
     public class SwaggerComposer : IUserComposer
     {
+        /// <summary>
+        /// 起始
+        /// </summary>
+        /// <param name="composition"></param>
         public void Compose(Composition composition)
         {
             GlobalConfiguration.Configuration.EnableSwagger(c =>

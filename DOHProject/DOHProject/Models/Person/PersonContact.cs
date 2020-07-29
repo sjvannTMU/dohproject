@@ -23,7 +23,7 @@ namespace DOHProject.Models.Common
         /// <summary>
         /// 聯絡人電話
         /// </summary>
-        public TELData TELData { get; set; }
+        public TelData TELData { get; set; }
         /// <summary>
         /// 聯絡人職業
         /// </summary>

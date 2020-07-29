@@ -23,5 +23,9 @@ namespace DOHProject.Models
         /// 節點名稱
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 匯出fhir
+        /// </summary>
+        public bool IsFhir { get; set; }
     }
 }

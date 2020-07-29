@@ -5,30 +5,11 @@ using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 人員模組
+    /// D003 人員模組
     /// </summary>
     public class NameData : IContentMap<NameData>, IElementMap<NameData>
     {
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        public NameData()
-        {
-
-        }
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        /// <param name="item"></param>
-        public NameData(PM.NameElement item)
-        {
-            FullName = item.FullName ?? (item.FamilyName + item.GivenName);
-            GivenName = item.GivenName;
-            FamilyName = item.FamilyName;
-            NickName = item.NickName;
-        }
-
-        #region 屬性區
+        #region 欄位區
         /// <summary>
         /// 全名
         /// </summary>
@@ -46,13 +27,28 @@ namespace DOHProject.Models.DataType
         /// 暱稱
         /// </summary>
         public string NickName { get; set; }
+
+        #endregion
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        public NameData() { }
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="item"></param>
+        public NameData(PM.NameElement item)
+        {
+            FullName = item.FullName ?? (item.FamilyName + item.GivenName);
+            GivenName = item.GivenName;
+            FamilyName = item.FamilyName;
+            NickName = item.NickName;
+        }
         /// <summary>
         /// 取交換元
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        #endregion
-
         public NameData Get(IPublishedContent content)
         {
             return new NameData((PM.NameElement)content);

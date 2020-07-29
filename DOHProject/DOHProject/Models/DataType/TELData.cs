@@ -6,37 +6,11 @@ using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 通訊模組
+    /// D002 通訊模組
     /// </summary>
-    public class TELData : IContentMap<TELData>, IElementMap<TELData>
+    public class TelData : IContentMap<TelData>, IElementMap<TelData>
     {
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        public TELData()
-        {
-
-        }
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        /// <param name="item">資料源</param>
-        public TELData(PM.TelElement item)
-        {
-            TELOffice = item.TelephoneNumber;
-            TELOfficeExtension = item.Extension;
-            FaxOffice = item.Fax;
-            Mobile = item.Mobile;
-            EMail = item.Email;
-            PhoneAreaCode = item.PhoneAreaCode;
-            PhoneCountryCode = item.CountryCode;
-        }
-        /*
-        /// <summary>
-        /// 電話-住家
-        /// </summary>
-        //public string TELHome { get; set; }
-        */
+        #region 欄位區
         /// <summary>
         /// 電話-辦公室
         /// </summary>
@@ -66,20 +40,39 @@ namespace DOHProject.Models.DataType
         /// 電話區域碼
         /// </summary>
         public string PhoneAreaCode { get; set; }
-
+        #endregion
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        public TelData(){}
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="item">資料源</param>
+        public TelData(PM.TelElement item)
+        {
+            TELOffice = item.TelephoneNumber;
+            TELOfficeExtension = item.Extension;
+            FaxOffice = item.Fax;
+            Mobile = item.Mobile;
+            EMail = item.Email;
+            PhoneAreaCode = item.PhoneAreaCode;
+            PhoneCountryCode = item.CountryCode;
+        }
         /// <summary>
         /// 取交換元
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public TELData Get(IPublishedContent content)
+        public TelData Get(IPublishedContent content)
         {
-            return new TELData((PM.TelElement)content);
+            return new TelData((PM.TelElement)content);
         }
         /// <summary>
         /// 設資料源
         /// </summary>
         /// <param name="content"></param>
+        /// <param name="index"></param>
         public void Set(ref IContent content, int index= 0)
         {
             if (content != null && content.ContentType.Alias == PM.TelElement.ModelTypeAlias)
@@ -98,7 +91,7 @@ namespace DOHProject.Models.DataType
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public Dictionary<string, object> Set(TELData item)
+        public Dictionary<string, object> Set(TelData item)
         {
             Dictionary<string, object> local = new Dictionary<string, object>
             {

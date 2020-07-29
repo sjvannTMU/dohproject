@@ -1,15 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 評鑑資料
+    /// D009 評鑑資料
     /// </summary>
     public class EvaluationData : IContentMap<EvaluationData>, IElementMap<EvaluationData>
     {
+        #region 欄位區
+        /// <summary>
+        /// 評鑑年度 - 民國年
+        /// </summary>
+        public int EvaluateYear { get; set; }
+        /// <summary>
+        /// 備註
+        /// </summary>
+        public string Remark { get; set; }
+        /// <summary>
+        ///領域
+        /// </summary>
+        public string Domain { get; set; }
+        #endregion
         /// <summary>
         /// 建構元
         /// </summary>
@@ -28,18 +41,7 @@ namespace DOHProject.Models.DataType
                 Domain = item.Domain;  
             }
         }
-        /// <summary>
-        /// 評鑑年度 - 民國年
-        /// </summary>
-        public int EvaluateYear { get; set; }
-        /// <summary>
-        /// 備註
-        /// </summary>
-        public string Remark { get; set; }
-        /// <summary>
-        ///領域
-        /// </summary>
-        public string Domain { get; set; }
+        
 
         /// <summary>
         /// 取交換元

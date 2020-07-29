@@ -12,7 +12,7 @@ namespace DOHProject.Controllers.WebAPI
     /// 儲備委員管理
     /// </summary>
     [RoutePrefix("api/committee")]
-    public class CommitteeController : UmbracoApiController, IRESTfulOperation<CommitteeViewModel>
+    public class CommitteeController : UmbracoApiController, IRestfulOperation<CommitteeViewModel>
     {
         private readonly CommitteeRepository _cr;
         /// <summary>
@@ -89,7 +89,7 @@ namespace DOHProject.Controllers.WebAPI
                 var node = _cr.Create(model);
                 return Ok(node);
             }
-            catch(SystemException e)
+            catch(ArgumentNullException e)
             {
                 return Content(System.Net.HttpStatusCode.Conflict, e.Message);
             }

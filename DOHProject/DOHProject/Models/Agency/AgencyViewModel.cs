@@ -1,5 +1,4 @@
-﻿
-using DOHProject.Models.Common;
+﻿using DOHProject.Models.Common;
 using DOHProject.Models.DataType;
 using Newtonsoft.Json;
 using System.Linq;
@@ -83,7 +82,7 @@ namespace DOHProject.Models.Agency
                 //設定地址模組
                 content.SetValue(PM.Agency.GetModelPropertyType(f => f.Address).Alias, JsonConvert.SerializeObject(new AddressData().Set(Agency.Address)));
                 //設定通訊模組
-                content.SetValue(PM.Agency.GetModelPropertyType(f => f.Address).Alias, JsonConvert.SerializeObject(new TELData().Set(Agency.Telephone)));
+                content.SetValue(PM.Agency.GetModelPropertyType(f => f.Address).Alias, JsonConvert.SerializeObject(new TelData().Set(Agency.Telephone)));
 
             }
             else if (content.ContentType.Alias == PM.Contacts.ModelTypeAlias)
@@ -95,7 +94,7 @@ namespace DOHProject.Models.Agency
                 //設定地址模組
                 content.SetValue(PM.Contacts.GetModelPropertyType(f => f.PersonAddress).Alias, JsonConvert.SerializeObject(new AddressData().Set(Agency.Contacts.Address)));
                 //設定通訊模組
-                content.SetValue(PM.Contacts.GetModelPropertyType(f => f.PersonTel).Alias, JsonConvert.SerializeObject(new TELData().Set(Agency.Contacts.TELData)));
+                content.SetValue(PM.Contacts.GetModelPropertyType(f => f.PersonTel).Alias, JsonConvert.SerializeObject(new TelData().Set(Agency.Contacts.TELData)));
                 //設定職業模組
                 content.SetValue(PM.Contacts.GetModelPropertyType(f => f.PersonOccupation).Alias, JsonConvert.SerializeObject(new OccupationData().Set(Agency.Contacts.Occupation)));
             }
@@ -108,18 +107,19 @@ namespace DOHProject.Models.Agency
                 //設定地址模組
                 content.SetValue(PM.Principal.GetModelPropertyType(f => f.PersonAddress).Alias, JsonConvert.SerializeObject(new AddressData().Set(Agency.Principal.Address)));
                 //設定通訊模組
-                content.SetValue(PM.Principal.GetModelPropertyType(f => f.PersonTel).Alias, JsonConvert.SerializeObject(new TELData().Set(Agency.Principal.TELData)));
+                content.SetValue(PM.Principal.GetModelPropertyType(f => f.PersonTel).Alias, JsonConvert.SerializeObject(new TelData().Set(Agency.Principal.TELData)));
             }
         }
         private AgencyItem LocalMap(PM.Agency agency)
         {
-            AgencyItem item = new AgencyItem();
-            item.AgencyAlias = agency.AgencyAlias;
-            item.AgencyId = agency.AgencyID;
-            item.AgencyName = agency.AgencyName;
+            AgencyItem item = new AgencyItem
+            {
+                AgencyAlias = agency.AgencyAlias,
+                AgencyId = agency.AgencyID,
+                AgencyName = agency.AgencyName
+            };
 
-            int temp = 0;
-            int.TryParse(agency.AgencyStatus, out temp);
+            int.TryParse(agency.AgencyStatus, out int temp);
             item.AgencyStatus = temp;
             item.IsHQ = agency.IsHQ;
             item.Address = new DataType.AddressData(agency.Address);
@@ -139,7 +139,7 @@ namespace DOHProject.Models.Agency
                 Identity = new DataType.IdentifyData(c.PersonIdentify),
                 Name = new DataType.NameData(c.PersonName),
                 Occupation = new DataType.OccupationData(c.PersonOccupation),
-                TELData = new DataType.TELData(c.PersonTel)
+                TELData = new DataType.TelData(c.PersonTel)
             };
         }
         private PersonPrincipal LocalMapForPricipal(PM.Principal p)
@@ -149,7 +149,7 @@ namespace DOHProject.Models.Agency
                 Address = new DataType.AddressData(p.PersonAddress),
                 Identity = new DataType.IdentifyData(p.PersonIdentify),
                 Name = new DataType.NameData(p.PersonName),
-                TELData = new DataType.TELData(p.PersonTel),
+                TELData = new DataType.TelData(p.PersonTel),
                 IsPartTime = p.IsPartTime
             };
         }

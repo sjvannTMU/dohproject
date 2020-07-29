@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Umbraco.Web.WebApi;
-
-namespace DOHProject.Models.CodeTable
+﻿namespace DOHProject.Models.CodeTable
 {
     /// <summary>
     /// 參照表-項目

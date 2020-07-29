@@ -13,7 +13,7 @@ namespace DOHProject.Controllers
     /// 機構管理
     /// </summary>
     [RoutePrefix("api/agencies")]
-    public class AgencyController : UmbracoApiController, IRESTfulOperation<AgencyViewModel>
+    public class AgencyController : UmbracoApiController, IRestfulOperation<AgencyViewModel>
     {
 
         private readonly AgencyRepository _ar;
@@ -112,7 +112,7 @@ namespace DOHProject.Controllers
                 var node = _ar.Create(model);
                 return Ok(node);
             }
-            catch (System.Exception e)
+            catch (System.ArgumentNullException e)
             {
                 return Content(System.Net.HttpStatusCode.Conflict, e.Message);
               

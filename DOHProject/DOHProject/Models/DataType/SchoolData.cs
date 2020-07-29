@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using PM = Umbraco.Web.PublishedModels;
@@ -8,10 +6,24 @@ using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 學校資料
+    /// D007 學校資料
     /// </summary>
     public class SchoolData : IContentMap<SchoolData>, IElementMap<SchoolData>
     {
+        #region 欄位區
+        /// <summary>
+        /// 學校代碼
+        /// </summary>
+        public string SchoolCode { get; set; }
+        /// <summary>
+        /// 學校名稱
+        /// </summary>
+        public string SchoolName { get; set; }
+        /// <summary>
+        /// 系所名稱
+        /// </summary>
+        public string Department { get; set; }
+        #endregion
         /// <summary>
         /// 建構元
         /// </summary>
@@ -30,18 +42,7 @@ namespace DOHProject.Models.DataType
                 Department = item.Department;
             }
         }
-        /// <summary>
-        /// 學校代碼
-        /// </summary>
-        public string SchoolCode { get; set; }
-        /// <summary>
-        /// 學校名稱
-        /// </summary>
-        public string SchoolName { get; set; }
-        /// <summary>
-        /// 系所名稱
-        /// </summary>
-        public string Department { get; set; }
+        
 
         /// <summary>
         /// 取交換元

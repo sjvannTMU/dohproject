@@ -50,8 +50,8 @@ namespace DOHProject.Models.Composition
         /// <param name="index"></param>
         public void Set(ref IContent content, int index = 0)
         {
-            content.Name = content.Name;
-            if (content != null && content.ContentType.Alias == PM.ExperimentControl.ModelTypeAlias)
+            content.Name = Name;
+            if (content.ContentType.Alias == PM.ExperimentControl.ModelTypeAlias)
             {
                 //設定職業模組
                 content.SetValue(PM.ExperimentControl.GetModelPropertyType(f => f.ExperimentItem).Alias, JsonConvert.SerializeObject(new OccupationData().Set(Experiment)));

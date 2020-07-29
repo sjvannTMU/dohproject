@@ -49,8 +49,8 @@ namespace DOHProject.Models.Composition
         /// <param name="index"></param>
         public void Set(ref IContent content, int index = 0)
         {
-            content.Name = content.Name;
-            if (content != null && content.ContentType.Alias == PM.EvaluationControl.ModelTypeAlias)
+            content.Name = Name;
+            if (content.ContentType.Alias == PM.EvaluationControl.ModelTypeAlias)
             { 
                 //設定評鑑模組
                 content.SetValue(PM.EvaluationControl.GetModelPropertyType(f => f.EvaluationItem).Alias, JsonConvert.SerializeObject(new EvaluationData().Set(Evaluation)));

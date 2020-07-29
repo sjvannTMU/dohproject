@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using PM = Umbraco.Web.PublishedModels;
@@ -9,25 +7,11 @@ using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 辨識模組
+    /// D005 辨識模組
     /// </summary>
     public class IdentifyData : IContentMap<IdentifyData>, IElementMap<IdentifyData>
     {
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        public IdentifyData() { }
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        /// <param name="item"></param>
-        public IdentifyData(PM.IdentifyElement item)
-        {
-            SID = item.SID;
-            Birthday = item.Birthday;
-            Gender = item.Gender;
-            ComType = item.ComType;
-        }
+        #region 欄位區
         /// <summary>
         /// 身份證字號
         /// </summary>
@@ -46,6 +30,23 @@ namespace DOHProject.Models.DataType
         /// 1：學術、2：實務
         /// </summary>
         public int ComType { get; set; }
+        #endregion
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        public IdentifyData() { }
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="item"></param>
+        public IdentifyData(PM.IdentifyElement item)
+        {
+            SID = item.SID;
+            Birthday = item.Birthday;
+            Gender = item.Gender;
+            ComType = item.ComType;
+        }
+        
         /// <summary>
         /// 取交換元
         /// </summary>

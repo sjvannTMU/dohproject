@@ -38,7 +38,7 @@ namespace DOHProject.Models.Common
         /// <summary>
         /// 委員聯絡方式
         /// </summary>
-        public TELData TELData { get; set; }
+        public TelData TELData { get; set; }
         /// <summary>
         /// 聯絡人職業資訊
         /// </summary>

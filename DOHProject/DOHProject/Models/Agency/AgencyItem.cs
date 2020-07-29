@@ -6,7 +6,7 @@ namespace DOHProject.Models.Agency
     /// <summary>
     /// 護產機構資料欄位
     /// </summary>
-    public struct AgencyItem
+    public class AgencyItem
     {
         /// <summary>
         /// 醫事機構代碼
@@ -35,7 +35,7 @@ namespace DOHProject.Models.Agency
         /// <summary>
         /// 機構電話
         /// </summary>
-        public TELData Telephone { get; set; }
+        public TelData Telephone { get; set; }
         /// <summary>
         /// 聯絡人
         /// </summary>

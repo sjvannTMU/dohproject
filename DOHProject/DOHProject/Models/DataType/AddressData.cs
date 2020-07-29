@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Web;
+﻿using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web;
 using PM = Umbraco.Web.PublishedModels;
 
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 地址模組
+    /// D001 地址模組
     /// </summary>
     public class AddressData : IContentMap<AddressData>, IElementMap<AddressData>
     {
@@ -22,7 +17,7 @@ namespace DOHProject.Models.DataType
         /// <summary>
         /// 建構元
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">資料元</param>
         public AddressData(PM.AddressElement item)
         {
             AreaId = item.AreaCode;

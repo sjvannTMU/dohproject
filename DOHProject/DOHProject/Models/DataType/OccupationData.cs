@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using PM = Umbraco.Web.PublishedModels;
@@ -10,25 +8,11 @@ namespace DOHProject.Models.DataType
 {
 
     /// <summary>
-    /// 職業相關
+    /// D006 職業相關
     /// </summary>
     public class OccupationData : IContentMap<OccupationData>, IElementMap<OccupationData>
     {
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        public OccupationData() { }
-        /// <summary>
-        /// 建構元
-        /// </summary>
-        /// <param name="item"></param>
-        public OccupationData(PM.OccupationElement item)
-        {
-            CompanyName = item.CompanyName;
-            Department = item.Department;
-            JobTitle = item.JobTitle;
-            Expertise = item.Expertise;
-        }
+        #region 欄位區
         /// <summary>
         /// 機關/公司名稱
         /// </summary>
@@ -45,6 +29,23 @@ namespace DOHProject.Models.DataType
         /// 專長名稱
         /// </summary>
         public string Expertise { get; set; }
+        #endregion
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        public OccupationData() { }
+        /// <summary>
+        /// 建構元
+        /// </summary>
+        /// <param name="item"></param>
+        public OccupationData(PM.OccupationElement item)
+        {
+            CompanyName = item.CompanyName;
+            Department = item.Department;
+            JobTitle = item.JobTitle;
+            Expertise = item.Expertise;
+        }
+      
         /// <summary>
         /// 取交換元
         /// </summary>

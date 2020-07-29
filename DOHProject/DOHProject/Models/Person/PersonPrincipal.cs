@@ -22,7 +22,7 @@ namespace DOHProject.Models.Common
         /// <summary>
         /// 通訊資料
         /// </summary>
-        public TELData TELData { get; set; }
+        public TelData TELData { get; set; }
         /// <summary>
         /// 是否為負責人
         /// </summary>

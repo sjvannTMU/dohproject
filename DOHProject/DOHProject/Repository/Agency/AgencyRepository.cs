@@ -1,10 +1,8 @@
 ﻿using DOHProject.App_Start;
 using DOHProject.Models.Agency;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web;
@@ -20,7 +18,7 @@ namespace DOHProject.Repository.Agency
         /// <summary>
         /// 資料處理輔助
         /// </summary>
-        private UmbracoHelper _helper;
+        private readonly UmbracoHelper _helper;
         
         /// <summary>
         /// 建構元 
@@ -40,7 +38,7 @@ namespace DOHProject.Repository.Agency
         {
             IContent p = (model.PId != 0) ? GetNode(model.PId) : GetUnGroupNode(PM.AgencyRoot.ModelTypeAlias, PM.AgencyGroup.ModelTypeAlias);
             var childNodes = GetChildNodes(p.Id, PM.Agency.ModelTypeAlias).Where(x => x.GetValue<string>(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias) == model.Agency.AgencyId);
-            if (childNodes != null || childNodes.Any()) throw new Exception(ErrorMessage.AddDuplicate);
+            if (childNodes != null || childNodes.Any()) throw new ArgumentNullException(ErrorMessage.AddDuplicate);
             
             IContent content = CreateNewNode(p.Id, PM.Agency.ModelTypeAlias, model.Name);
             model.Set(ref content);

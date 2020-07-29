@@ -6,10 +6,16 @@ using PM = Umbraco.Web.PublishedModels;
 namespace DOHProject.Models.DataType
 {
     /// <summary>
-    /// 生活型態
+    /// D012 生活型態
     /// </summary>
     public class LifeStyleData:IContentMap<LifeStyleData>,IElementMap<LifeStyleData>
     {
+        #region 欄位區
+        /// <summary>
+        /// 飲食：1 葷食 2 素食
+        /// </summary>
+        public int Diet { get; set; }
+        #endregion
         /// <summary>
         /// 建構元
         /// </summary>
@@ -26,10 +32,7 @@ namespace DOHProject.Models.DataType
                 Diet = item.DietType;
             }
         }
-        /// <summary>
-        /// 飲食：1 葷食 2 素食
-        /// </summary>
-        public int Diet { get; set; }
+       
         /// <summary>
         /// 取交換元
         /// </summary>
