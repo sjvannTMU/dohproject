@@ -10,6 +10,7 @@ namespace DOHProject.Models.DataType
     /// </summary>
     public class EvaluationData : IContentMap<EvaluationData>, IElementMap<EvaluationData>
     {
+        #region 建構元
         /// <summary>
         /// 建構元
         /// </summary>
@@ -28,6 +29,8 @@ namespace DOHProject.Models.DataType
                 Domain = item.Domain;  
             }
         }
+        #endregion
+        #region 資料區
         /// <summary>
         /// 評鑑年度 - 民國年
         /// </summary>
@@ -40,7 +43,8 @@ namespace DOHProject.Models.DataType
         ///領域
         /// </summary>
         public string Domain { get; set; }
-
+        #endregion
+        #region 對應區
         /// <summary>
         /// 取交換元
         /// </summary>
@@ -79,5 +83,6 @@ namespace DOHProject.Models.DataType
             };
             return local;
         }
+        #endregion
     }
 }

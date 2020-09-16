@@ -18,4 +18,19 @@
       <file name="/umbraco/lib/tinymce/plugins/noneditable/plugin.min.js" />
     </files>
   </item>
+  <item key="L2Nzcy9BcnRpY2xlLUxpc3QuY3NzOy9jc3MvQ2Fyb3VzZWwtSGVyby5jc3M7L2Nzcy9Gb290ZXItQmFzaWMuY3NzOy9jc3MvTmF2aWdhdGlvbi1DbGVhbjEuY3NzOy9jc3MvTmV3cy1DYXJkcy5jc3M7L2Nzcy9zdHlsZXMuY3NzOw" file="C:\Users\Administrator\Source\Repos\dohproject\DOHProject\DOHProject\App_Data\TEMP\ClientDependency\1163948974_1fef237869a84bf5bf4b2b6fcc6a2c58.cdC" compression="gzip" version="1163948974">
+    <files>
+      <file name="/css/Article-List.css" />
+      <file name="/css/Carousel-Hero.css" />
+      <file name="/css/Footer-Basic.css" />
+      <file name="/css/Navigation-Clean1.css" />
+      <file name="/css/News-Cards.css" />
+      <file name="/css/styles.css" />
+    </files>
+  </item>
+  <item key="L3NjcmlwdHMvbmF2aWdhdGlvbk1lbnUuanM7" file="C:\Users\Administrator\Source\Repos\dohproject\DOHProject\DOHProject\App_Data\TEMP\ClientDependency\1163948974_7cc7f0398b8d4db89bc6b8461d3fdb58.cdJ" compression="gzip" version="1163948974">
+    <files>
+      <file name="/scripts/navigationMenu.js" />
+    </files>
+  </item>
 </map>

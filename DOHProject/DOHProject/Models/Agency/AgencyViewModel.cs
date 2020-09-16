@@ -73,7 +73,6 @@ namespace DOHProject.Models.Agency
             // content => agency
             if (content.ContentType.Alias == PM.Agency.ModelTypeAlias)
             {
-
                 content.SetValue(PM.Agency.GetModelPropertyType(f => f.AgencyID).Alias, Agency.AgencyId);
                 content.SetValue(PM.Agency.GetModelPropertyType(f => f.AgencyName).Alias, Agency.AgencyName);
                 content.SetValue(PM.Agency.GetModelPropertyType(f => f.IsHQ).Alias, Agency.IsHQ);

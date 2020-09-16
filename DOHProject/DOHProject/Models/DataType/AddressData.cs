@@ -15,6 +15,7 @@ namespace DOHProject.Models.DataType
     /// </summary>
     public class AddressData : IContentMap<AddressData>, IElementMap<AddressData>
     {
+        #region 建構元
         /// <summary>
         /// 建構元
         /// </summary>
@@ -32,6 +33,8 @@ namespace DOHProject.Models.DataType
             StreeLine = item.StressAddress;
             AddresstType = item.AddressType.Name;
         }
+        #endregion
+        #region 資料區
         /// <summary>
         /// 縣市代碼
         /// </summary>
@@ -61,6 +64,8 @@ namespace DOHProject.Models.DataType
         /// 網址
         /// </summary>
         public string Website { get; set; }
+        #endregion
+        #region 對應區
         /// <summary>
         /// 設交換元
         /// </summary>
@@ -105,5 +110,6 @@ namespace DOHProject.Models.DataType
                 content.SetValue(PM.AddressElement.GetModelPropertyType(f => f.StressAddress).Alias, StreeLine);
             }
         }
+        #endregion
     }
 }
